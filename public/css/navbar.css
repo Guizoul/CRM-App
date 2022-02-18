@@ -1,20 +1,22 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 ul.menu {
+  box-sizing: border-box;
   display: inline-block;
   list-style-type: none;
   background-color: rgb(11, 198, 255);
 }
 li.menu_list {
+  box-sizing: border-box;
   height: 155px;
   width: 110px;
   position: relative;
 }
 li.menu_list .front,
 a.side {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -35,25 +37,30 @@ li.menu_list .front {
   transform-origin: 0 0;
 }
 a.side {
+  box-sizing: border-box;
   background-color: #ffffff;
   color: #34465d;
   transform-origin: 0 0 85px;
   transform: rotateY(-90deg);
 }
 li.menu_list:hover a.side {
+  box-sizing: border-box;
   transform: rotateY(0deg);
 }
 li.menu_list:hover .front {
+  box-sizing: border-box;
   transform: rotateY(90deg);
 }
 
 .nav-bar {
+  box-sizing: border-box;
   background-color: aqua;
   width: 100%;
   display: flex;
   height: 80px;
 }
 .logoimg {
+  box-sizing: border-box;
   width: 250px;
   height: 103px;
   margin-top: -14px;
@@ -61,12 +68,14 @@ li.menu_list:hover .front {
 }
 
 .profilestatus p {
+  box-sizing: border-box;
   text-align: center;
   text-shadow: 7px;
   font-weight: 500;
   font-style: italic;
 }
 .profilestatus button {
+  box-sizing: border-box;
   width: 77px;
   height: 24px;
   border: 1px solid black;
@@ -79,5 +88,6 @@ li.menu_list:hover .front {
 }
 
 .profilestatus {
+  box-sizing: border-box;
   margin-left: 68%;
 }

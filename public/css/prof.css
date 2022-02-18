@@ -1,0 +1,27 @@
+.salles {
+  margin-left: 192px;
+  margin-top: -600px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-evenly;
+}
+
+.salleimg {
+  height: 170px;
+  width: 255px;
+}
+
+.infosalle {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sallcard {
+  margin-bottom: 37px;
+}

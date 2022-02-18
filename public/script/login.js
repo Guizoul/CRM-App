@@ -2,6 +2,7 @@
 const email = document.querySelector(".email");
 const password = document.querySelector(".password");
 const btn = document.querySelector(".btn");
+
 ///function to vlidate email
 function ValidateEmail(input) {
   var validRegex =
