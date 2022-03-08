@@ -1,3 +1,6 @@
+body {
+  background-color: rgb(214, 214, 214);
+}
 .salles {
   margin-left: 192px;
   margin-top: -600px;
@@ -24,4 +27,59 @@
 
 .sallcard {
   margin-bottom: 37px;
+}
+.form {
+  display: none;
+  position: fixed;
+  background: #d3d2d2;
+  max-width: 360px;
+  top: 300px;
+  left: 500px;
+  padding: 76px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%), 0 5px 5px 0 rgb(0 0 0 / 24%);
+  border-radius: 7px;
+}
+.login-form {
+  display: grid;
+  justify-items: center;
+}
+
+.btnSubmit {
+  width: 80px;
+  align-content: center;
+  height: 26px;
+  margin-top: 27px;
+  outline: 0;
+  background-color: #00e1ff93;
+  border: 0;
+  color: #ffffffca;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+.exit {
+  margin-top: -61px;
+  content: "\00D7";
+  background: rgba(255, 0, 0, 0.479);
+  width: 31px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.reserversalle {
+  background: rgb(0 55 255 / 42%);
+  height: 23px;
+  width: 136px;
+  border-radius: 5px;
+  position: absolute;
+  margin-top: -44px;
+  margin-left: -68px;
+  opacity: 0;
+}
+
+.sallcard:hover .reserversalle {
+  opacity: 1;
 }

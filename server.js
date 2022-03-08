@@ -1,7 +1,9 @@
 //import modules here
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const schedule = require("node-schedule");
 require("dotenv").config();
 
 const authenticateToken = require("./public/middleware/authJWT");
@@ -54,17 +56,16 @@ app.get("/prof", (req, res) => {
   res.sendFile(__dirname + "/public/prof.html");
 });
 app.post("/prof", async (req, res) => {
-  const result = await mydatabse.query("SELECT * FROM classe", []);
-  console.log(result[0]);
+  const result = await mydatabse.query(
+    "SELECT * FROM classe WHERE reservee=false",
+    []
+  );
   let sallesid = [];
   let sallescapacity = [];
   for (let i = 0; i < result.length; i++) {
     sallesid.push(result[i].idclasse);
     sallescapacity.push(result[i].capacity);
   }
-  console.log(sallesid);
-  console.log(sallescapacity);
-
   res.json({ classeid: sallesid, classecapacity: sallescapacity });
 });
 //
@@ -74,7 +75,36 @@ app.get("/admin", (req, res) => {
 
 /// reserve the classe in db
 app.put("/prof", (req, res) => {
-  const { idclasse } = req.body;
+  const { idclasse, dateRes } = req.body;
+  console.log(idclasse, dateRes);
+  const dateBeginingOfReservation = new Date(dateRes);
 
-  console.log(idclasse);
+  // date end reservation after 3hours of the reservation date ;
+  let dateEndReservaetion = new Date(dateRes);
+  dateEndReservaetion.setHours(dateEndReservaetion.getHours() + 4);
+  // dateEndReservaetion.setDate()
+  console.log(dateEndReservaetion);
+
+  schedule.scheduleJob(dateBeginingOfReservation, async () => {
+    console.log("ready to exucute in db ");
+    await mydatabse.query(
+      `UPDATE classe set reservee=true where idclasse="${idclasse}"`
+    );
+  });
+
+  //end of reservation
+  schedule.scheduleJob(dateEndReservaetion, async () => {
+    console.log("ready to exucute in db ");
+    await mydatabse.query(
+      `UPDATE classe set reservee=true where idclasse="${idclasse}"`
+    );
+  });
 });
+
+// mydatabse
+//   .query(`select daResevation from reservation where idSalle="B12"`)
+//   .then((result) => {
+//     let newdate = new Date(`"${result[0].daResevation}"`);
+//     console.log(newdate);
+//   })
+//   .catch((err) => console.log(err));
