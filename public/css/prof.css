@@ -1,15 +1,28 @@
 body {
   background-color: rgb(214, 214, 214);
 }
+
+body::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../imgs/life-post-right.png");
+  opacity: 0.4;
+}
 .salles {
+  position: absolute;
   margin-left: 192px;
-  margin-top: -600px;
+  margin-top: 196px;
   width: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: stretch;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .salleimg {
@@ -26,6 +39,7 @@ body {
 }
 
 .sallcard {
+  margin-left: 18px;
   margin-bottom: 37px;
 }
 .form {
@@ -82,4 +96,67 @@ body {
 
 .sallcard:hover .reserversalle {
   opacity: 1;
+}
+
+h1 {
+  color: #1e549f;
+  margin-top: 350px;
+  position: absolute;
+  font-size: 3.5em;
+  margin-left: 547px;
+}
+h2 {
+  color: #081f37;
+  margin-top: 261px;
+  position: absolute;
+  font-size: -3.5em;
+  margin-left: 547px;
+}
+
+.reservation {
+  color: #5fc9f3;
+}
+
+.boardBooking {
+  position: absolute;
+  top: 308px;
+  left: 383px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-around;
+  display: none;
+}
+
+.bookingCards {
+  margin-left: 160px;
+  margin-right: -24px;
+}
+
+.btns {
+  width: 97px;
+  height: 26px;
+  border-radius: 8px;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-weight: 600;
+  background: #1e549f;
+  color: #ede6db;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.bookingCards {
+  display: flex;
+  flex-direction: column;
+}
+.bookinfo {
+  background: #417d7a;
+  width: 120px;
+  height: 128px;
+  margin-top: 11px;
+  margin-left: -12px;
+  border-radius: 9px 0px 9px 0;
+  text-align: center;
+  opacity: 0.9;
 }

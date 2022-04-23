@@ -1,3 +1,3 @@
-import { createNavs } from "./admin.js";
+import { createNavs } from "./navBar.js";
 
 createNavs();

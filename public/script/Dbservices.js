@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
+const { system } = require("nodemon/lib/config");
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -47,52 +48,47 @@ class Database {
 const mydatabse = new Database();
 
 ////
+
 async function dbCheckUsers(table, email, password, res, req) {
-  let i = 0;
-  i++;
+  //generate token
+  let token = jwt.sign(email, process.env.API_SECRET);
+  //
   const sql = `SELECT email from ${table} where email="${email}"`;
-  mydatabse.query(sql, []).then((result) => {
-    if (result.length == 0 && i == 3) {
-      return res.jso({
-        alter: "no such email",
+  const result1 = await mydatabse.query(sql, []);
+
+  if (result1.length != 0) {
+    const sql1 = `SELECT password from ${table} where email="${email}"`;
+    const result2 = await mydatabse.query(sql1, []);
+    if (result2[0].password == password) {
+      // create a token for the user
+      console.log(token);
+
+      if (table === "etudiant") {
+        return res.json({
+          email: email,
+          acesstoken: token,
+          etudiant: "password correct",
+        });
+      } else if (table === "professeur") {
+        return res.json({
+          email: email,
+          acesstoken: token,
+          professeur: "password correct",
+        });
+      } else if (table === "admin") {
+        return res.json({
+          email: email,
+          acesstoken: token,
+          admin: "password correct",
+        });
+      }
+    } else {
+      return res.json({
+        acesstoken: token,
+        alert: " incorrect password",
       });
     }
-    if (result.length != 0) {
-      const sql1 = `SELECT password from ${table} where email="${email}"`;
-      mydatabse.query(sql1, []).then((result) => {
-        if (result[0].password == password) {
-          // create a token for the user
-
-          let token = jwt.sign(email, process.env.API_SECRET);
-
-          console.log(token);
-
-          if (table === "etudiant") {
-            return res.json({
-              acesstoken: token,
-              etudiant: "password correct",
-            });
-          } else if (table === "professeur") {
-            module.exports = email;
-            return res.json({
-              cesstoken: token,
-              professeur: "password correct",
-            });
-          } else if (table === "admin") {
-            return res.json({
-              cesstoken: token,
-              admin: "password correct",
-            });
-          }
-        } else {
-          return res.json({
-            acesstoken: null,
-            alert: " incorrect password",
-          });
-        }
-      });
-    }
-  });
+  }
 }
 
 /// classe db

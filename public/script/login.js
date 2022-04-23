@@ -51,28 +51,59 @@ btn.addEventListener("click", () => {
   }
 });
 
+//
+
 async function sendData(path, data) {
-  console.log("send data function");
   const res = await fetch(path, {
     method: "post",
-    headers: new Headers({ "Content-Type": "application/json" }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
     body: JSON.stringify(data),
   });
-
   const data1 = await res.json();
   processTheData(data1);
 }
 
 /// process data
 
+const sendReq = async (route, token) => {
+  console.log("sending get resquest ");
+  const resp = await fetch(route, {
+    method: "Get",
+    headers: new Headers({
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    }),
+  });
+  //const data2 = resp.json();
+  //console.log(data2);
+};
+
 const processTheData = (data) => {
+  console.log("process");
   if (data.alert) {
+    console.log(data.acesstoken);
     showMyAlert(data.alert);
   } else if (data.etudiant) {
+    sessionStorage.user = JSON.stringify(data);
     location.replace("/etudiant");
   } else if (data.professeur) {
+    sessionStorage.user = JSON.stringify(data);
     location.replace("/prof");
+    //sendReq("/prof", data.acesstoken);
   } else if (data.admin) {
+    sessionStorage.user = JSON.stringify(data);
     location.replace("/admin");
   }
 };
+
+// if the user logged in he can't relogin (should log out first).
+
+// window.onload = () => {
+//   if (sessionStorage.user) {
+//     let user = JSON.parse(sessionStorage.user);
+//     location.replace("/prof");
+//   }
+// };
