@@ -3,7 +3,7 @@ const { Database, dbCheckUsers } = require("../public/script/Dbservices.js");
 const mydatabse = new Database();
 const jwt = require("jsonwebtoken");
 
-const authenticateToken = require("../public/middleware/authJWT.js");
+const authenticateToken = require("../public/middleware/authJWT.js").default;
 
 const intAllRoutes = (app, dirname) => {
   //

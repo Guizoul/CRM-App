@@ -23,7 +23,7 @@ export function createNavs() {
       <p class="side">ABOUT</p>
     </li>
     <li class="menu_list">
-      <span class="front fas fa-briefcase"></span>
+      <span class="front fas fa-building"></span>
       <p class="side booking">RESERVATION</p>
     </li>
     <li class="menu_list">

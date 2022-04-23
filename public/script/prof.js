@@ -183,12 +183,10 @@ home.addEventListener("click", () => {
 });
 
 bookbtn.addEventListener("click", () => {
-  location.reload();
   appWelcom.style.display = "none";
   salles.style.display = "flex";
   form.style.display = "none";
   boardBooking.style.display = "none";
-  return false;
 });
 
 //profile section
