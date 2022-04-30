@@ -1,34 +1,34 @@
-export function createNavs() {
-  const body = document.body;
-  body.innerHTML += `<nav class="nav-bar">
-    <div class="logo-field">
-      <img class="logoimg" src="./imgs/logoinpt.png" alt="logo" />
-    </div>
-        <div class="profilestatus">
-            <i class='fas fa-user-tie' style='font-size:36px'></i>
-             <p class="profilename prf">Login as : name</p>
-             <button class="btnstatus"><p>Login</p></button>
-        </div>
-      </li>
-    </ul>
+(function ($) {
+  $(function () {
+    //  open and close nav
+    $("#navbar-toggle").click(function () {
+      $("nav ul").slideToggle();
+    });
 
-  </nav>
-  <ul class="menu">
-    <li class="menu_list">
-      <span class="front fas fa-home"></span>
-      <p class="side home">HOME</p>
-    </li>
-    <li class="menu_list">
-      <span class="front fas fa-info"></span>
-      <p class="side">ABOUT</p>
-    </li>
-    <li class="menu_list">
-      <span class="front fas fa-building"></span>
-      <p class="side booking">RESERVATION</p>
-    </li>
-    <li class="menu_list">
-      <span class="front fas fa-paper-plane"></span>
-      <p class="side contact">CONTACT</p>
-    </li>
-  </ul>`;
-}
+    // Hamburger toggle
+    $("#navbar-toggle").on("click", function () {
+      this.classList.toggle("active");
+    });
+
+    // If a link has a dropdown, add sub menu toggle.
+    $("nav ul li a:not(:only-child)").click(function (e) {
+      $(this).siblings(".navbar-dropdown").slideToggle("slow");
+
+      // Close dropdown when select another dropdown
+      $(".navbar-dropdown").not($(this).siblings()).hide("slow");
+      e.stopPropagation();
+    });
+    $("nav ul li img:not(:only-child)").click(function (e) {
+      $(this).siblings(".navbar-dropdown").slideToggle("slow");
+
+      // Close dropdown when select another dropdown
+      $(".navbar-dropdown").not($(this).siblings()).hide("slow");
+      e.stopPropagation();
+    });
+
+    // Click outside the dropdown will remove the dropdown class
+    $("html").click(function () {
+      $(".navbar-dropdown").hide();
+    });
+  });
+})(jQuery);

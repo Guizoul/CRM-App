@@ -11,9 +11,9 @@ const intAllRoutes = (app, dirname) => {
     console.log(req.body);
     let { email, password } = req.body;
 
-    await dbCheckUsers("professeur", email, password, res);
-    await dbCheckUsers("admin", email, password, res);
-    await dbCheckUsers("etudiant", email, password, res);
+    await dbCheckUsers("professeurs", email, password, res);
+    await dbCheckUsers("admins", email, password, res);
+    await dbCheckUsers("etudiants", email, password, res);
   });
 
   //
@@ -25,7 +25,7 @@ const intAllRoutes = (app, dirname) => {
     res.sendFile(dirname + "/public/login.html");
   });
   app.get("/", (req, res) => {
-    res.sendFile(dirname + "/public/login.html");
+    res.sendFile(dirname + "/public/home.html");
   });
 
   app.get("/etudiant", (req, res) => {

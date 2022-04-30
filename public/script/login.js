@@ -99,11 +99,10 @@ const processTheData = (data) => {
   }
 };
 
-// if the user logged in he can't relogin (should log out first).
-
-// window.onload = () => {
-//   if (sessionStorage.user) {
-//     let user = JSON.parse(sessionStorage.user);
-//     location.replace("/prof");
-//   }
-// };
+//if the user logged in he can't relogin (should logout first).
+window.onload = () => {
+  if (sessionStorage.user) {
+    let user = JSON.parse(sessionStorage.user);
+    location.replace("/prof");
+  }
+};

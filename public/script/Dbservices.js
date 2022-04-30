@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
-const { system } = require("nodemon/lib/config");
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -26,16 +25,6 @@ class Database {
     });
   }
 
-  classeDb() {
-    const sqlC = "SELECT * FROM classe";
-    db.query(sqlC, (err, result) => {
-      if (err) throw err;
-      else {
-        return result;
-      }
-    });
-  }
-
   close() {
     return new Promise((resolve, reject) => {
       this.connection.end((err) => {
@@ -53,9 +42,8 @@ async function dbCheckUsers(table, email, password, res, req) {
   //generate token
   let token = jwt.sign(email, process.env.API_SECRET);
   //
-  const sql = `SELECT email from ${table} where email="${email}"`;
+  const sql = `SELECT email,firstname,lastname from ${table} where email="${email}"`;
   const result1 = await mydatabse.query(sql, []);
-
   if (result1.length != 0) {
     const sql1 = `SELECT password from ${table} where email="${email}"`;
     const result2 = await mydatabse.query(sql1, []);
@@ -63,21 +51,21 @@ async function dbCheckUsers(table, email, password, res, req) {
       // create a token for the user
       console.log(token);
 
-      if (table === "etudiant") {
+      if (table === "etudiants") {
         return res.json({
-          email: email,
+          name: result1[0].firstname + " " + result1[0].lastname,
           acesstoken: token,
           etudiant: "password correct",
         });
-      } else if (table === "professeur") {
+      } else if (table === "professeurs") {
         return res.json({
-          email: email,
+          name: result1[0].firstname + " " + result1[0].lastname,
           acesstoken: token,
           professeur: "password correct",
         });
-      } else if (table === "admin") {
+      } else if (table === "admins") {
         return res.json({
-          email: email,
+          name: result1[0].firstname + " " + result1[0].lastname,
           acesstoken: token,
           admin: "password correct",
         });

@@ -1,25 +1,26 @@
-import { createNavs } from "./navBar.js";
+import { createNavs, createFooter } from "./createnavBar.js";
 
 createNavs();
-
+createFooter();
 // form to specify the date of reservation
-
 const form = document.querySelector(".form");
 
-//profile field
-const namePorfil = document.querySelector(".profilename");
+// //profile field
+const namePorfil = document.querySelector(".username");
 
 function updateProfilename(name) {
   namePorfil.innerHTML = name;
 }
 
-//
+//profile section
+
+// //
 
 function processData(data) {
   const sallesid = data.classeid;
   const sallescapacity = data.classecapacity;
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < sallesid.length; i++) {
     createSallcard(sallesid[i], sallescapacity[i], i);
   }
   const btnreserve = document.querySelectorAll(".reserverbtn");
@@ -57,8 +58,8 @@ function processData(data) {
   }
 }
 
-// get salles from backend
-fetch("/prof", {
+// // get salles from backend
+/*fetch("/prof", {
   method: "post",
   headers: new Headers({ "Content-Type": "application/json" }),
   body: JSON.stringify(),
@@ -66,11 +67,9 @@ fetch("/prof", {
   .then((res) => res.json())
   .then((data) => {
     processData(data);
-  });
+  });*/
 
-//// /
 const salles = document.querySelector(".salles");
-
 salles.style.display = "none";
 function createSallcard(idclasse, capacity, idCard) {
   salles.innerHTML += `
@@ -85,17 +84,16 @@ function createSallcard(idclasse, capacity, idCard) {
   `;
 }
 
-/// handel events
-
+// /// handel events
 const exitFormDatereservation = document.querySelector(".exit");
 
 exitFormDatereservation.addEventListener("click", () => {
   form.style.display = "none";
 });
 
-////// booking board
+// ////// booking board
 
-const sectionbooking = document.querySelector(".boardBooking");
+// const sectionbooking = document.querySelector(".boardBooking");
 
 /// to decorate text only
 var TxtRotate = function (el, toRotate, period) {
@@ -141,6 +139,15 @@ TxtRotate.prototype.tick = function () {
   }, delta);
 };
 window.onload = function () {
+  // if (!sessionStorage.user) {
+  //   location.replace("/login");
+  // } else {
+  //   let ourUser = JSON.parse(sessionStorage.user || null);
+  //   const nameprof = ourUser.name;
+  //   if (ourUser != null) {
+  //     updateProfilename(nameprof);
+  //   }
+  // }
   var elements = document.getElementsByClassName("txt-rotate");
   for (var i = 0; i < elements.length; i++) {
     var toRotate = elements[i].getAttribute("data-rotate");
@@ -156,43 +163,18 @@ window.onload = function () {
   document.body.appendChild(css);
 };
 
-/// menu controller
+//
 
-const reservationMenu = document.querySelector(".booking");
+const navelement = document.querySelector(".nav-list");
 
-const appWelcom = document.querySelector(".welcom");
-const home = document.querySelector(".home");
-const boardBooking = document.querySelector(".boardBooking");
-const bookbtn = document.querySelector(".book");
-
-console.log(reservationMenu);
-
-reservationMenu.addEventListener("click", () => {
-  //cotroll display of elements
-  appWelcom.style.display = "none";
-  // salles.style.display = "flex";
-  boardBooking.style.display = "flex";
-});
-
-home.addEventListener("click", () => {
-  //cotroll display of elements
-  appWelcom.style.display = "block";
-  salles.style.display = "none";
-  form.style.display = "none";
-  boardBooking.style.display = "none";
-});
-
-bookbtn.addEventListener("click", () => {
-  appWelcom.style.display = "none";
-  salles.style.display = "flex";
-  form.style.display = "none";
-  boardBooking.style.display = "none";
-});
-
-//profile section
-let ourUser = JSON.parse(sessionStorage.user || null);
-const nameprof = ourUser.email.split(".");
-console.log(nameprof);
-if (ourUser != null) {
-  updateProfilename(nameprof[0] + " " + nameprof[1].split("@")[0]);
-}
+navelement.innerHTML = `
+<li>
+<a href="#!">Plan de L'INPT</a>
+</li>
+<li>
+ <img class="user" src="../public/imgs/user.png" srcset=""/>
+  <ul class="navbar-dropdown">
+    <li>
+      <button class="login">login</button>
+    </li>
+`;

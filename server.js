@@ -4,10 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const initAllRoutes = require("./routes/web.js");
-const connectToDb = require("./config/connectDb.js");
-
-connectToDb();
-
 require("dotenv").config();
 
 const app = express();
