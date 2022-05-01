@@ -5,13 +5,6 @@ createFooter();
 // form to specify the date of reservation
 const form = document.querySelector(".form");
 
-// //profile field
-const namePorfil = document.querySelector(".username");
-
-function updateProfilename(name) {
-  namePorfil.innerHTML = name;
-}
-
 //profile section
 
 // //
@@ -139,15 +132,6 @@ TxtRotate.prototype.tick = function () {
   }, delta);
 };
 window.onload = function () {
-  // if (!sessionStorage.user) {
-  //   location.replace("/login");
-  // } else {
-  //   let ourUser = JSON.parse(sessionStorage.user || null);
-  //   const nameprof = ourUser.name;
-  //   if (ourUser != null) {
-  //     updateProfilename(nameprof);
-  //   }
-  // }
   var elements = document.getElementsByClassName("txt-rotate");
   for (var i = 0; i < elements.length; i++) {
     var toRotate = elements[i].getAttribute("data-rotate");
@@ -164,7 +148,6 @@ window.onload = function () {
 };
 
 //
-
 const navelement = document.querySelector(".nav-list");
 
 navelement.innerHTML = `
@@ -178,3 +161,8 @@ navelement.innerHTML = `
       <button class="login">login</button>
     </li>
 `;
+
+const btnlogin = document.querySelector(".login");
+btnlogin.addEventListener("click", () => {
+  location.replace("/login");
+});

@@ -18,7 +18,7 @@ const intAllRoutes = (app, dirname) => {
 
   //
   app.get("/admin", (req, res) => {
-    res.sendFile(__dirname + "/public/admin.html");
+    res.sendFile(dirname + "/public/admin.html");
   });
   //
   app.get("/login", (req, res) => {
@@ -36,6 +36,16 @@ const intAllRoutes = (app, dirname) => {
 
   app.get("/prof", (req, res) => {
     res.sendFile(dirname + "/public/prof.html");
+  });
+
+  app.post("/emploi", async (req, res) => {
+    const idprof = req.body.id;
+    const requetSql = `select jour,debut,fin,matiere.nommatiere,classe.niveau,filiere.nom  from
+    (emploi inner join classe on classe.idclasse=emploi.idclasse
+    inner join matiere on matiere.idmatiere =emploi.idmatiere) inner join filiere on classe.nomfiliere =filiere.nom
+    where idprof=${idprof};`;
+    const result = await mydatabse.query(requetSql);
+    return res.json({ planning: result });
   });
 
   app.post("/prof", async (req, res) => {

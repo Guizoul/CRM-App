@@ -42,7 +42,7 @@ async function dbCheckUsers(table, email, password, res, req) {
   //generate token
   let token = jwt.sign(email, process.env.API_SECRET);
   //
-  const sql = `SELECT email,firstname,lastname from ${table} where email="${email}"`;
+  const sql = `SELECT email,firstname,lastname,id from ${table} where email="${email}"`;
   const result1 = await mydatabse.query(sql, []);
   if (result1.length != 0) {
     const sql1 = `SELECT password from ${table} where email="${email}"`;
@@ -53,18 +53,21 @@ async function dbCheckUsers(table, email, password, res, req) {
 
       if (table === "etudiants") {
         return res.json({
+          id: result1[0].id,
           name: result1[0].firstname + " " + result1[0].lastname,
           acesstoken: token,
           etudiant: "password correct",
         });
       } else if (table === "professeurs") {
         return res.json({
+          id: result1[0].id,
           name: result1[0].firstname + " " + result1[0].lastname,
           acesstoken: token,
           professeur: "password correct",
         });
       } else if (table === "admins") {
         return res.json({
+          id: result1[0].id,
           name: result1[0].firstname + " " + result1[0].lastname,
           acesstoken: token,
           admin: "password correct",

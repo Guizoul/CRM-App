@@ -5,6 +5,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 .navigation {
+  position: sticky;
   height: 125px;
   background: #fff8f3;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,

@@ -57,7 +57,7 @@ export function createNavs() {
               USERNAME
             </li>
             <li>
-              <button class="logout">logout</button>
+              <button class ="logout">logout</button>
             </li>
       </li>
       
