@@ -9,58 +9,58 @@ const form = document.querySelector(".form");
 
 // //
 
-function processData(data) {
-  const sallesid = data.classeid;
-  const sallescapacity = data.classecapacity;
+// function processData(data) {
+//   const sallesid = data.classeid;
+//   const sallescapacity = data.classecapacity;
 
-  for (let i = 0; i < sallesid.length; i++) {
-    createSallcard(sallesid[i], sallescapacity[i], i);
-  }
-  const btnreserve = document.querySelectorAll(".reserverbtn");
-  for (let j = 0; j < btnreserve.length; j++) {
-    btnreserve[j].addEventListener("click", () => {
-      form.style.display = "block";
+//   for (let i = 0; i < sallesid.length; i++) {
+//     createSallcard(sallesid[i], sallescapacity[i], i);
+//   }
+//   const btnreserve = document.querySelectorAll(".reserverbtn");
+//   for (let j = 0; j < btnreserve.length; j++) {
+//     btnreserve[j].addEventListener("click", () => {
+//       form.style.display = "block";
 
-      const btnsbmt = document.querySelector(".btnSubmit");
+//       const btnsbmt = document.querySelector(".btnSubmit");
 
-      btnsbmt.addEventListener("click", async () => {
-        const dateReservation = document.querySelector(".date");
-        if (dateReservation.value.length != 0) {
-          const salleInfo = {
-            idclasse: btnreserve[j].previousElementSibling.innerHTML,
-            dateRes: dateReservation.value,
-          };
-          fetch("/prof", {
-            method: "put",
-            headers: new Headers({ "Content-Type": "application/json" }),
-            body: JSON.stringify(salleInfo),
-          })
-            .then((res) => {
-              res.json();
-            })
-            .then((data) => {
-              if (!data.updatedb) {
-                form.style.display = "none";
-              }
-            });
-        } else {
-          console.log("enter a date please");
-        }
-      });
-    });
-  }
-}
+//       btnsbmt.addEventListener("click", async () => {
+//         const dateReservation = document.querySelector(".date");
+//         if (dateReservation.value.length != 0) {
+//           const salleInfo = {
+//             idclasse: btnreserve[j].previousElementSibling.innerHTML,
+//             dateRes: dateReservation.value,
+//           };
+//           fetch("/prof", {
+//             method: "put",
+//             headers: new Headers({ "Content-Type": "application/json" }),
+//             body: JSON.stringify(salleInfo),
+//           })
+//             .then((res) => {
+//               res.json();
+//             })
+//             .then((data) => {
+//               if (!data.updatedb) {
+//                 form.style.display = "none";
+//               }
+//             });
+//         } else {
+//           console.log("enter a date please");
+//         }
+//       });
+//     });
+//   }
+// }
 
-// // get salles from backend
-/*fetch("/prof", {
+//  get planning of the day from backend
+fetch("/", {
   method: "post",
   headers: new Headers({ "Content-Type": "application/json" }),
   body: JSON.stringify(),
 })
   .then((res) => res.json())
   .then((data) => {
-    processData(data);
-  });*/
+    console.log(data);
+  });
 
 const salles = document.querySelector(".salles");
 salles.style.display = "none";
@@ -78,15 +78,27 @@ function createSallcard(idclasse, capacity, idCard) {
 }
 
 // /// handel events
-const exitFormDatereservation = document.querySelector(".exit");
 
-exitFormDatereservation.addEventListener("click", () => {
-  form.style.display = "none";
+const inebtn = document.querySelectorAll(".ine");
+
+inebtn.forEach((value) => {
+  value.addEventListener("click", () => {
+    value.style.background = "#1e56a0";
+  });
+  value.addEventListener("hover", () => {
+    value.style.background = " #d6e4f0";
+  });
 });
 
-// ////// booking board
-
-// const sectionbooking = document.querySelector(".boardBooking");
+// for (var i = 0; i < inebtn.length; i++) {
+//   console.log(inebtn[i]);
+//   // inebtn[i].addEventListener("hover", () => {
+//   //   inebtn[i].style.background = "#1e56a0";
+//   // });
+//   inebtn[i].addEventListener("click", () => {
+//     inebtn[i].style.color = "#1e56a0";
+//   });
+// }
 
 /// to decorate text only
 var TxtRotate = function (el, toRotate, period) {
@@ -152,7 +164,7 @@ const navelement = document.querySelector(".nav-list");
 
 navelement.innerHTML = `
 <li>
-<a href="#!">Plan de L'INPT</a>
+<a href="http://localhost:1337/planinpt">Plan de L'INPT</a>
 </li>
 <li>
  <img class="user" src="../public/imgs/user.png" srcset=""/>

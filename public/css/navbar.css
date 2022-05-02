@@ -205,8 +205,9 @@ nav ul li ul li a {
 /* footer style*/
 
 .footer {
+  box-shadow: rgb(0 0 0 / 25%) 24px -17px 28px, rgb(0 0 0 / 22%) 0px -11px 9px;
+  position: sticky;
   background: #d6e4f0;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
   text-align: left;

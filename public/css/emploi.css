@@ -11,24 +11,7 @@
   background: #34495e;
 }
 
-.green {
-  background: #2ecc71;
-}
-
-.red {
-  background: #e74c3c;
-}
-
-.orange {
-  background: #f39c12;
-}
-
-.cs335,
-.cs426,
-.md303,
-.md352,
-.md313,
-.cs240 {
+.cs335 {
   font-weight: 300;
   cursor: pointer;
 }
@@ -92,14 +75,12 @@ table td {
   width: 3em !important;
 }
 
-/* Add this attribute to the element that needs a tooltip */
 [data-tooltip] {
   position: relative;
   z-index: 2;
   cursor: pointer;
 }
 
-/* Hide the tooltip content by default */
 [data-tooltip]:before,
 [data-tooltip]:after {
   visibility: hidden;
@@ -112,7 +93,6 @@ table td {
   transition: ease 0.5s all;
 }
 
-/* Position tooltip above the element */
 [data-tooltip]:before {
   position: absolute;
   bottom: 110%;
@@ -132,7 +112,6 @@ table td {
   line-height: 1.2;
 }
 
-/* Triangle hack to make tooltip look like a speech bubble */
 [data-tooltip]:after {
   position: absolute;
   bottom: 110%;
@@ -147,7 +126,6 @@ table td {
   line-height: 0;
 }
 
-/* Show tooltip content on hover */
 [data-tooltip]:hover:before,
 [data-tooltip]:hover:after {
   visibility: visible;

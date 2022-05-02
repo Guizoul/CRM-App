@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // see the path as static
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname));
-app.use(express.static("public"));
+app.use(express.static("./public"));
 
 // listner
 app.listen(1337, () => {

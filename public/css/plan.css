@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.descplan {
+  font: italic small-caps bold 16px/2 cursive;
+  height: auto;
+  width: 300px;
+}
+.heading {
+  text-transform: capitalize;
+  padding-left: 64px;
+  padding-top: 49px;
+  padding-bottom: 30px;
+  color: #1e56a0;
+}
+
+.planglobal {
+  padding-top: 1px;
+  background-color: #f6f6f6;
+  padding-bottom: 60px;
+}

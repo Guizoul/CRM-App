@@ -15,39 +15,39 @@ export function createNavs() {
       </div>
       <ul class="nav-list">
         <li>
-          <a href="#!">Home</a>
+          <a href="http://localhost:1337/">Home</a>
         </li>
         
         <li>
-          <a href="#!" class="booking">Booking</a>
+          <a href="javascript:void(0);" class="booking" >Booking</a>
           <ul class="navbar-dropdown">
             <li>
-              <a href="#!">Sass</a>
+              <a href="javascript:void(0);">Sass</a>
             </li>
             <li>
-              <a href="#!">Less</a>
+              <a href="javascript:void(0);">Less</a>
             </li>
             <li>
-              <a href="#!">Stylus</a>
+              <a href="javascript:void(0);">Stylus</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#!">Notificaiton <i class="fa fa-bell-o"></i></a>
+          <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
           <ul class="navbar-dropdown">
             <li>
-              <a href="#!">Sass</a>
+              <a href="javascript:void(0);">Sass</a>
             </li>
             <li>
-              <a href="#!">Less</a>
+              <a href="javascript:void(0);">Less</a>
             </li>
             <li>
-              <a href="#!">Stylus</a>
+              <a href="javascript:void(0);">Stylus</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#!">Contact</a>
+          <a href="javascript:void(0);">Contact</a>
         </li>
         <li>
         <img class="user" src="../public/imgs/user.png" srcset=""
@@ -73,17 +73,16 @@ export function createFooter() {
     <span><img class="logoinpt" src="./public/imgs/logoinpt.png" srcset="" /></span>
 
   <p class="footer-links">
-    <a href="#" class="link-1">Home</a>
 
-    <a href="#">Home</a>
+    <a href="http://localhost:1337/">Home</a>
 
-    <a href="#">About</a>
+    <a href="javascript:void(0);">About</a>
 
     <a href="#">Contact</a>
   </p>
 
   <p class="footer-name">
-    <i>institut Nationale des postes et telecominication</i> © 2015
+    <i>institut Nationale des postes et telecominication</i> © 2022
   </p>
 </div>
 

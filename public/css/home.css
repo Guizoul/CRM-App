@@ -3,6 +3,9 @@ body {
   /* background-image: url("../imgs/background.png"); */
   /* background-size: 1058px; */
 }
+p{
+  font: italic small-caps bold 16px/2 cursive;
+}
 
 .welcom {
   margin-top: -100px;
@@ -49,6 +52,7 @@ body {
   justify-content: space-around;
 }
 .ine {
+  cursor: pointer;
   width: 57px;
   height: 50px;
   background: snow;

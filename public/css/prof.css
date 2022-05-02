@@ -5,3 +5,7 @@
   padding-bottom: 81px;
   margin-bottom: 6px;
 }
+
+p{
+  font: italic small-caps bold 16px/2 cursive;
+}
