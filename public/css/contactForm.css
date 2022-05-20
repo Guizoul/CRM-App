@@ -57,6 +57,11 @@ body {
   padding: 5px;
   border: 1px solid #fff;
   border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.iconify:hover {
+  transform: scale(1.1);
 }
 
 .second-row {
@@ -106,4 +111,11 @@ button {
   border-radius: 5px;
   padding: 8px 16px;
   font-weight: 600;
+  transition: all 0.3s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #1e56a0dc;
+  border: #1e56a0dc 1px solid;
 }
