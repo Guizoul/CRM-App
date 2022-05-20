@@ -1,11 +1,5 @@
-.emploi {
-  margin-top: -100px;
-  padding-left: 200px;
-  background: #d6e4f0;
-  padding-bottom: 81px;
-  margin-bottom: 6px;
-}
+@import url("./timer.css");
 
-p{
+p {
   font: italic small-caps bold 16px/2 cursive;
 }

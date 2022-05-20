@@ -30,9 +30,17 @@ const intAllRoutes = (app, dirname) => {
     res.sendFile(dirname + "/public/home.html");
   });
 
-  app.post("/", (req, res) => {});
+  app.post("/", async (req, res) => {
+    //
+    const niveau = req.body.niveau + 1;
+    const jour = req.body.jour;
+    const time = req.body.time;
+    const sql = `select firstname,lastname,classe.nomfiliere,classe.niveau,matiere.nommatiere,emploi.idsalle
+      from (emploi inner join classe  on classe.idclasse=emploi.idclasse) inner join matiere on matiere.idmatiere=emploi.idmatiere inner join professeurs on professeurs.id=emploi.idprof where classe.niveau=? and jour=? and debut=?;`;
+    const result = await mydatabse.query(sql, [niveau, jour, time]);
+    return res.json({ planning: result });
+  });
   //plan inpt
-
   app.get("/planinpt", (req, res) => {
     res.sendFile(dirname + "/public/plan.html");
   });
@@ -55,7 +63,6 @@ const intAllRoutes = (app, dirname) => {
      inner join matiere on matiere.idmatiere =emploi.idmatiere) inner join filiere on classe.nomfiliere =filiere.nom
      where idprof=${idprof};`;
     const result = await mydatabse.query(requetSql);
-
     return res.json({ planning: result });
   });
 

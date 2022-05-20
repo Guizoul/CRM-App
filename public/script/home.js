@@ -52,15 +52,6 @@ const form = document.querySelector(".form");
 // }
 
 //  get planning of the day from backend
-fetch("/", {
-  method: "post",
-  headers: new Headers({ "Content-Type": "application/json" }),
-  body: JSON.stringify(),
-})
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  });
 
 const salles = document.querySelector(".salles");
 salles.style.display = "none";
@@ -81,25 +72,55 @@ function createSallcard(idclasse, capacity, idCard) {
 
 const inebtn = document.querySelectorAll(".ine");
 
-inebtn.forEach((value) => {
-  value.addEventListener("click", () => {
-    value.style.background = "#1e56a0";
-  });
-  value.addEventListener("hover", () => {
-    value.style.background = " #d6e4f0";
-  });
-});
-
-// for (var i = 0; i < inebtn.length; i++) {
-//   console.log(inebtn[i]);
-//   // inebtn[i].addEventListener("hover", () => {
-//   //   inebtn[i].style.background = "#1e56a0";
-//   // });
-//   inebtn[i].addEventListener("click", () => {
-//     inebtn[i].style.color = "#1e56a0";
+// inebtn.forEach((value) => {
+//   value.addEventListener("click", () => {
+//     value.style.background = "#1e56a0";
 //   });
-// }
+//   value.addEventListener("hover", () => {
+//     value.style.background = " #d6e4f0";
+//   });
+// });
 
+const loader = document.querySelector(".loader");
+
+for (let i = 0; i < inebtn.length; i++) {
+  inebtn[i].addEventListener("click", () => {
+    loader.style.display = "block";
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 2000);
+    inebtn[i].style.background = "#1e56a0";
+    const dataemploi = {
+      niveau: i,
+      jour: "monday",
+      time: "09:00:00",
+    };
+    fetch("/", {
+      method: "post",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(dataemploi),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        emploiNow(data, i + 1);
+      });
+  });
+}
+
+const emploiNow = (data, niveau) => {
+  const emploi = data.planning;
+  console.log(emploi);
+  for (let j = 0; j < data.planning.length; j++) {
+    const row1 = document.querySelector(`.table-row${j + 1}`);
+    row1.childNodes[1].innerHTML = `<i class="fa fa-map-marker"></i>${emploi[j].idsalle}</div>`;
+
+    row1.childNodes[3].innerHTML = ` ${emploi[j].nommatiere}`;
+
+    row1.childNodes[5].innerHTML = ` PR.${emploi[j].lastname}`;
+
+    row1.childNodes[7].innerHTML = ` ${emploi[j].nomfiliere}${niveau}`;
+  }
+};
 /// to decorate text only
 var TxtRotate = function (el, toRotate, period) {
   this.toRotate = toRotate;

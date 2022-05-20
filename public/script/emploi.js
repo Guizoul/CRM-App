@@ -1,14 +1,27 @@
-const frontEmploi = (v1a, v2a, v1m, v2m, debut, nameEmp) => {
-  if (debut == "14:00:00") {
+const frontEmploi = (v1a, v2a, v1m, v2m, debut, fin, nameEmp) => {
+  if (debut == "14:00:00" && fin == "17:30:00") {
     v1a.innerHTML = nameEmp;
+    v1a.setAttribute("data-tooltip", "kk");
     v1a.classList.add("blue");
     v2a.innerHTML = nameEmp;
     v2a.classList.add("blue");
-  } else if (debut == "09:00:00") {
+  } else if (debut == "09:00:00" && fin == "12:30:00") {
     v1m.classList.add("navy");
     v1m.innerHTML = nameEmp;
     v2m.classList.add("navy");
     v2m.innerHTML = nameEmp;
+  } else if (debut == "09:00:00" && fin == "10:30:00") {
+    v1m.classList.add("navy");
+    v1m.innerHTML = nameEmp;
+  } else if (debut == "14:00:00" && fin == "15:30:00") {
+    v1a.innerHTML = nameEmp;
+    v1a.classList.add("blue");
+  } else if (debut == "11:00:00" && fin == "12:30:00") {
+    v2m.classList.add("navy");
+    v2m.innerHTML = nameEmp;
+  } else if (debut == "16:00:00" && fin == "17:30:00") {
+    v2a.innerHTML = nameEmp;
+    v2a.classList.add("blue");
   }
 };
 
@@ -17,6 +30,7 @@ export function setPlanning(data, emploiVacations) {
     let jour = data.planning[i].jour;
     console.log(jour);
     let debut = data.planning[i].debut;
+    let fin = data.planning[i].fin;
     let nameEmp =
       data.planning[i].nommatiere +
       " ( " +
@@ -25,7 +39,7 @@ export function setPlanning(data, emploiVacations) {
       " )" +
       " a " +
       data.planning[i].idsalle;
-
+    console.log(nameEmp);
     switch (jour) {
       case "monday": {
         frontEmploi(
@@ -34,6 +48,7 @@ export function setPlanning(data, emploiVacations) {
           emploiVacations.mondayv1m,
           emploiVacations.mondayv2m,
           debut,
+          fin,
           nameEmp
         );
         break;
@@ -45,6 +60,7 @@ export function setPlanning(data, emploiVacations) {
           emploiVacations.tuesdayv1m,
           emploiVacations.tuesdayv2m,
           debut,
+          fin,
           nameEmp
         );
         break;
@@ -56,6 +72,7 @@ export function setPlanning(data, emploiVacations) {
           emploiVacations.wednsdayv1m,
           emploiVacations.wednsdayv2m,
           debut,
+          fin,
           nameEmp
         );
         break;
@@ -67,6 +84,7 @@ export function setPlanning(data, emploiVacations) {
           emploiVacations.thursdayv1m,
           emploiVacations.thursdayv2m,
           debut,
+          fin,
           nameEmp
         );
         break;
@@ -78,6 +96,7 @@ export function setPlanning(data, emploiVacations) {
           emploiVacations.fridayv1m,
           emploiVacations.fridayv2m,
           debut,
+          fin,
           nameEmp
         );
         break;

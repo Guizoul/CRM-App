@@ -39,12 +39,6 @@ window.onload = () => {
   }
 };
 
-
-
-
-
-
-
 //
 const mondayv1m = document.querySelector(".mondayv1m");
 const mondayv2m = document.querySelector(".mondayv2m");

@@ -1,5 +1,4 @@
 //import modules here
-
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -25,7 +24,6 @@ app.listen(1337, () => {
 initAllRoutes(app, __dirname);
 
 ///// 404 route
-
 app.use((req, res) => {
   res.sendFile(__dirname + "/public/404.html");
 });

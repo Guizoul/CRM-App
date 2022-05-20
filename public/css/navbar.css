@@ -16,7 +16,9 @@ body {
   align-items: center;
   color: #2581dc;
 }
-
+.username {
+  text-transform: uppercase;
+}
 .user {
   height: 30px;
   width: 25px;
@@ -381,4 +383,14 @@ nav ul li ul li a {
   .footer .footer-center i {
     margin-left: 0;
   }
+}
+
+/*loader*/
+
+.loader {
+  position: fixed;
+  width: 247px;
+  top: 50%;
+  left: 50%;
+  display: none;
 }
