@@ -6,6 +6,11 @@ const jwt = require("jsonwebtoken");
 const authenticateToken = require("../public/middleware/authJWT.js").default;
 
 const intAllRoutes = (app, dirname) => {
+  //contact and report route
+  app.get("/contact", (req, res) => {
+    res.sendFile(dirname + "/public/contactForm.html");
+  });
+
   //
   app.post("/login", async (req, res) => {
     console.log(req.body);
@@ -91,6 +96,11 @@ const intAllRoutes = (app, dirname) => {
   });
 
   ///
+
+  //booking routes
+  app.get("/booking", (req, res) => {
+    res.sendFile(dirname + "/public/reservation.html");
+  });
   /// reserve the classe in db
   app.put("/prof", (req, res) => {
     const { idclasse, dateRes } = req.body;

@@ -5,44 +5,6 @@ createNavs();
 createmploi();
 createFooter();
 
-let ourUser = JSON.parse(sessionStorage.user || null);
-
-// planning section
-
-const logout = document.querySelector(".logout");
-const namePorfil = document.querySelector(".username");
-
-console.log(logout);
-function updateProfilename(name) {
-  namePorfil.innerHTML = name;
-}
-// logout.addEventListener("click", () => {
-//   console.log("jdfjd");
-//   sessionStorage.clear();
-//   location.replace("/login");
-// });
-
-fetch("/etudiant", {
-  method: "post",
-  headers: new Headers({ "Content-Type": "application/json" }),
-  body: JSON.stringify(ourUser),
-})
-  .then((res) => res.json())
-  .then((data) => {
-    setPlanning(data, emploiVacations, "etudiant");
-  });
-
-window.onload = () => {
-  if (!sessionStorage.user) {
-    location.replace("/login");
-  } else {
-    const nameprof = ourUser.name;
-    if (ourUser != null) {
-      updateProfilename(nameprof);
-    }
-  }
-};
-
 const navelement = document.querySelector(".nav-list");
 
 navelement.innerHTML = `
@@ -68,7 +30,6 @@ navelement.innerHTML = `
 />
 <ul class="navbar-dropdown">
   <li class="username">
-    USERNAME
   </li>
   <li>
     <button class ="logout">logout</button>
@@ -76,6 +37,35 @@ navelement.innerHTML = `
 </li>
 
 `;
+
+let ourUser = JSON.parse(sessionStorage.user || null);
+
+// planning section
+
+const logout = document.querySelector(".logout");
+const namePorfil = document.querySelector(".username");
+
+function updateProfilename(name) {
+  console.log(namePorfil);
+  namePorfil.innerHTML = name;
+}
+logout.addEventListener("click", () => {
+  const permession = confirm("do you really want to log out?");
+  if (permession) {
+    sessionStorage.clear();
+    location.replace("/login");
+  }
+});
+
+fetch("/etudiant", {
+  method: "post",
+  headers: new Headers({ "Content-Type": "application/json" }),
+  body: JSON.stringify(ourUser),
+})
+  .then((res) => res.json())
+  .then((data) => {
+    setPlanning(data, emploiVacations, "etudiant");
+  });
 
 const mondayv1m = document.querySelector(".mondayv1m");
 const mondayv2m = document.querySelector(".mondayv2m");
@@ -123,4 +113,17 @@ var emploiVacations = {
   tuesdayv2m: tuesdayv2m,
   tuesdayv1a: tuesdayv1a,
   tuesdayv2a: tuesdayv2a,
+};
+
+window.onload = () => {
+  if (!sessionStorage.user) {
+    location.replace("/login");
+  } else {
+    const nameetu = ourUser.name;
+
+    if (nameetu != null) {
+      console.log(nameetu);
+      updateProfilename(nameetu);
+    }
+  }
 };

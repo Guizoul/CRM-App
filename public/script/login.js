@@ -103,6 +103,6 @@ const processTheData = (data) => {
 window.onload = () => {
   if (sessionStorage.user) {
     let user = JSON.parse(sessionStorage.user);
-    location.replace("/prof");
+    //location.replace("/prof");
   }
 };

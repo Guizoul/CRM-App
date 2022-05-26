@@ -6,6 +6,7 @@ createNavs();
 createFooter();
 
 // //profile field
+
 const namePorfil = document.querySelector(".username");
 
 function updateProfilename(name) {
@@ -27,6 +28,12 @@ fetch("/emploi", {
   .then((data) => {
     setPlanning(data, emploiVacations, "prof");
   });
+
+//booking section
+const booking = document.querySelector(".booking");
+booking.addEventListener("click", () => {
+  location.replace("/booking");
+});
 
 window.onload = () => {
   if (!sessionStorage.user) {

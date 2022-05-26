@@ -5,6 +5,12 @@ createFooter();
 // form to specify the date of reservation
 const form = document.querySelector(".form");
 
+// report a problem
+const reportbtn = document.querySelector(".col-5");
+reportbtn.addEventListener("click", () => {
+  location.replace("/contact");
+});
+
 //profile section
 
 // //

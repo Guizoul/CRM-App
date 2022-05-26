@@ -20,17 +20,6 @@ export function createNavs() {
         
         <li>
           <a href="javascript:void(0);" class="booking" >Booking</a>
-          <ul class="navbar-dropdown">
-            <li>
-              <a href="javascript:void(0);">Sass</a>
-            </li>
-            <li>
-              <a href="javascript:void(0);">Less</a>
-            </li>
-            <li>
-              <a href="javascript:void(0);">Stylus</a>
-            </li>
-          </ul>
         </li>
         <li>
           <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
@@ -46,9 +35,7 @@ export function createNavs() {
             </li>
           </ul>
         </li>
-        <li>
-          <a href="javascript:void(0);">Contact</a>
-        </li>
+       
         <li>
         <img class="user" src="../public/imgs/user.png" srcset=""
         />
