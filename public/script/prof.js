@@ -25,7 +25,7 @@ fetch("/emploi", {
 })
   .then((res) => res.json())
   .then((data) => {
-    setPlanning(data, emploiVacations);
+    setPlanning(data, emploiVacations, "prof");
   });
 
 window.onload = () => {

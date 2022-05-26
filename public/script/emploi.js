@@ -25,21 +25,31 @@ const frontEmploi = (v1a, v2a, v1m, v2m, debut, fin, nameEmp) => {
   }
 };
 
-export function setPlanning(data, emploiVacations) {
+export function setPlanning(data, emploiVacations, user) {
   for (let i = 0; i < data.planning.length; i++) {
     let jour = data.planning[i].jour;
     console.log(jour);
     let debut = data.planning[i].debut;
     let fin = data.planning[i].fin;
-    let nameEmp =
-      data.planning[i].nommatiere +
-      " ( " +
-      data.planning[i].nom +
-      data.planning[i].niveau +
-      " )" +
-      " a " +
-      data.planning[i].idsalle;
-    console.log(nameEmp);
+    let nameEmp;
+    if (user == "prof") {
+      nameEmp =
+        data.planning[i].nommatiere +
+        " ( " +
+        data.planning[i].nom +
+        data.planning[i].niveau +
+        " )" +
+        " a " +
+        data.planning[i].idsalle;
+    } else if (user == "etudiant") {
+      nameEmp =
+        data.planning[i].nommatiere +
+        "  PR." +
+        data.planning[i].lastname +
+        " a " +
+        data.planning[i].idsalle;
+    }
+
     switch (jour) {
       case "monday": {
         frontEmploi(

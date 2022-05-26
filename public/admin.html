@@ -9,11 +9,102 @@
     />
     <link rel="stylesheet" href="/public/css/navbar.css" />
     <title>AMDMIN PAGE</title>
-  </head>
-  <header></header>
-  <body>
-    <div class="navs"></div>
 
-    <script type="module" src="./script/admin.js"></script>
-  </body>
+    <header class="header"></header>
+    <body>
+      <div class="navs"></div>
+
+      <script type="module" src="./script/admin.js"></script>
+      <style>
+        table,
+        th,
+        td {
+          border: 1px solid white;
+
+          padding: 30px;
+        }
+        table {
+          border-spacing: 15px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #fff0f5;
+        }
+        tr:nth-child(odd) {
+          background-color: #f5fffa;
+        }
+
+        body {
+          color: white;
+          font-family: Verdana;
+        }
+        h2 {
+          margin: auto;
+          width: 60%;
+          text-align: center;
+          color: black;
+          padding: 70px;
+        }
+        .text1 {
+          color: black;
+          padding: 50px;
+          font-family: Verdana;
+          text-align: center;
+        }
+      </style>
+
+      <h2>Tableau de bord</h2>
+      <form action="/action_page.php">
+        <label for="cars">
+          <span class="text1">Domaine de visibilité</span>:</label
+        >
+        <input
+          type="date"
+          id="start"
+          name="trip-start"
+          value="2022-05-22"
+          min="2022-05-22"
+          max="2022-12-31"
+        />
+        <br /><br />
+      </form>
+      <table style="width: 100%">
+        <tr>
+          <th>
+            <span style="color: #006400">Salles disponibles </span><br />
+            <br />
+            <span style="color: black">38</span>
+          </th>
+          <th>
+            <span style="color: #006400">Amphis disponibles</span> <br />
+            <br />
+            <span style="color: black">8</span>
+          </th>
+          <th>
+            <span style="color: #006400">CCs disponibles</span><br /><br />
+            <span style="color: black">3</span>
+          </th>
+        </tr>
+
+        <tr>
+          <th>
+            <span style="color: #8b0000">Salles occupées</span> <br />
+            <br />
+            <span style="color: black">23</span>
+          </th>
+          <th>
+            <span style="color: #8b0000">Amphis occupés</span> <br />
+            <br />
+            <span style="color: black">2</span>
+          </th>
+          <th>
+            <span style="color: #8b0000">CCs occupés</span> <br />
+            <br />
+            <span style="color: black">2</span>
+          </th>
+        </tr>
+      </table>
+      <footer class="footer"></footer>
+    </body>
+  </head>
 </html>

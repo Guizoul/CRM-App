@@ -49,6 +49,16 @@ const intAllRoutes = (app, dirname) => {
   app.get("/etudiant", (req, res) => {
     res.sendFile(dirname + "/public/etudiant.html");
   });
+  app.post("/etudiant", async (req, res) => {
+    const idetu = req.body.id;
+    const rquetSql1 = `select classe.idclasse from classe inner join etudiants on etudiants.idclasse =classe.idclasse where etudiants.id =2;`;
+    const requetSql2 = `select jour,debut,fin,professeurs.lastname, matiere.nommatiere ,idsalle from
+    (emploi inner join matiere on matiere.idmatiere =emploi.idmatiere) inner join professeurs on professeurs.id =emploi.idprof  where emploi.idclasse= ?;`;
+    const result = await mydatabse.query(rquetSql1); // idclasse of the student
+    const result1 = await mydatabse.query(requetSql2, [result[0].idclasse]); //planning of the student
+    console.log(result1);
+    return res.json({ planning: result1 });
+  });
 
   //
 

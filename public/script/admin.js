@@ -1,3 +1,4 @@
-import { createNavs } from "./navBar.js";
+import { createNavs, createFooter } from "./createnavBar.js";
 
 createNavs();
+createFooter();
