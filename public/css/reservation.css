@@ -28,8 +28,10 @@ body
     gap: 10px; */
 
     height: 40px;
-    background-color: rgba(192, 234, 232, 0.808);
-    border: 3px solid rgba(192, 234, 232, 0.808);
+    background-color: #004085;
+    color : white;
+    text-decoration: bold;
+    border: 3px solid 3C91E6;
     display:flex;
     align-items:center;
     justify-content: space-between;
@@ -63,7 +65,7 @@ body
   } */
 
 .cadre{
-    height: 500px;
+    height: 200px;
     background-color: #ffffff7d;
 
     top: 1px;
@@ -106,6 +108,51 @@ body
     height: 50px; */
     margin: 0 5px;
   }
+
+
+.list{
+    background-color: #004085;
+    height: 400px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin:auto;
+    padding: 4px 4px 4px;
+    border-radius: 25px;
+    position : relative;
+    bottom: 55px;
+    /* left: 20px; */
+}
+
+.salleList{
+    background-color:  #DBEBFA;
+    height: 40px;
+    width: 100%;
+    margin: 2px;
+    padding: 4px 4px;
+    border-radius: 20px;
+    position: relative;
+    top: 15px;
+    display: block;
+    justify-content: space-between;
+
+}
+
+.book{
+    background-color: #004085;
+    justify-content: end;
+    position:absolute;
+    top: 12px;
+    left: 900px;
+    
+}
+.text{
+    position: relative;
+    bottom: 5px;
+    left:2%;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .footer{
     position: fixed;
 }
