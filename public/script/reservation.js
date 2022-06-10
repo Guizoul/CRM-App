@@ -124,6 +124,4 @@ logout.addEventListener("click", () => {
 //   }
 // };
 
-const selection=document.getElementById("Repeat")
-
-
+const selection = document.getElementById("Repeat");
