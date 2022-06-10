@@ -28,10 +28,19 @@ const intAllRoutes = (app, dirname) => {
   app.get("/admin/contact", (req, res) => {
     res.sendFile(dirname + "/public/Contact.html");
   });
-  app.post("/admin/contact", (req, res) => {
+  app.post("/admin/contact", async (req, res) => {
     console.log("a report msg has arrived ");
     console.log(req.body);
-    sql = `insert into reportpb values("name","classe","prb");`;
+    sql = `insert into reportpb values("${req.body.name}","${req.body.Classe}","${req.body.ReportMsg}");`;
+    const result = await mydatabse.query(sql);
+    return res.json({ success: "inserted successfully" });
+  });
+  app.post("/admin/contact/getReports", async (req, res) => {
+    sql = `SELECT * FROM reportpb`;
+    const result = await mydatabse.query(sql);
+    return res.json({
+      reports: result,
+    });
   });
   //
   app.get("/login", (req, res) => {
@@ -89,19 +98,19 @@ const intAllRoutes = (app, dirname) => {
     return res.json({ planning: result });
   });
 
-  app.post("/prof", async (req, res) => {
-    const result = await mydatabse.query(
-      "SELECT * FROM classe WHERE reservee=false",
-      []
-    );
-    let sallesid = [];
-    let sallescapacity = [];
-    for (let i = 0; i < result.length; i++) {
-      sallesid.push(result[i].idclasse);
-      sallescapacity.push(result[i].capacity);
-    }
-    res.json({ classeid: sallesid, classecapacity: sallescapacity });
-  });
+  // app.post("/prof", async (req, res) => {
+  //   const result = await mydatabse.query(
+  //     "SELECT * FROM classe WHERE reservee=false",
+  //     []
+  //   );
+  //   let sallesid = [];
+  //   let sallescapacity = [];
+  //   for (let i = 0; i < result.length; i++) {
+  //     sallesid.push(result[i].idclasse);
+  //     sallescapacity.push(result[i].capacity);
+  //   }
+  //   res.json({ classeid: sallesid, classecapacity: sallescapacity });
+  // });
 
   ///
 
