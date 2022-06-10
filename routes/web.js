@@ -25,6 +25,14 @@ const intAllRoutes = (app, dirname) => {
   app.get("/admin", (req, res) => {
     res.sendFile(dirname + "/public/admin.html");
   });
+  app.get("/admin/contact", (req, res) => {
+    res.sendFile(dirname + "/public/Contact.html");
+  });
+  app.post("/admin/contact", (req, res) => {
+    console.log("a report msg has arrived ");
+    console.log(req.body);
+    sql = `insert into reportpb values("name","classe","prb");`;
+  });
   //
   app.get("/login", (req, res) => {
     res.sendFile(dirname + "/public/login.html");
