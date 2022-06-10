@@ -67,6 +67,4 @@ window.onload = () => {
   }
 };
 
-const selection=document.getElementById("Repeat")
-
-
+const selection = document.getElementById("Repeat");
