@@ -21,6 +21,16 @@ const intAllRoutes = (app, dirname) => {
     await dbCheckUsers("etudiants", email, password, res);
   });
 
+  app.post("/reservation", async (req, res) => {
+    console.log(req.body);
+    let { date, heure_debut, heure_fin, fois, salle, cours,filiere,niveau,bouton } = req.body;
+    const QList=`SELECT * FROM salles INNER JOIN reservation ON salles.idsalle=resrvation.idsalle where reservation.Dateres!=${date} and reservation.heuredebut!=${heure_debut} and salles.reservee=false;`
+    const result = await mydatabse.query(QList);
+    return res.json({ SallesDispo: result });
+  });
+
+
+
   //
   app.get("/admin", (req, res) => {
     res.sendFile(dirname + "/public/admin.html");
@@ -58,7 +68,7 @@ const intAllRoutes = (app, dirname) => {
     const jour = req.body.jour;
     const time = req.body.time;
     const sql = `select firstname,lastname,classe.nomfiliere,classe.niveau,matiere.nommatiere,emploi.idsalle
-      from (emploi inner join classe  on classe.idclasse=emploi.idclasse) inner join matiere on matiere.idmatiere=emploi.idmatiere inner join professeurs on professeurs.id=emploi.idprof where classe.niveau=? and jour=? and debut=?;`;
+      from (emploi inner join classe on classe.idclasse=emploi.idclasse) inner join matiere on matiere.idmatiere=emploi.idmatiere inner join professeurs on professeurs.id=emploi.idprof where classe.niveau=? and jour=? and debut=?;`;
     const result = await mydatabse.query(sql, [niveau, jour, time]);
     return res.json({ planning: result });
   });

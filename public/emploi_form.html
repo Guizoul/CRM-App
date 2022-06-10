@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/emploi_form.css" />
+    <title>emploi du temps</title>
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div class="row">
+          <h4>Emploi du temps</h4>
+          <div class="input-group">
+            <input type="text" placeholder="Nom de prof" />
+          </div>
+          <div class="input-group">
+            <input type="text" placeholder="filiere" />
+          </div>
+
+          <div class="row">
+            <div class="col-half input-group">
+              <select id="filiere">
+                <option value="ine1">INE1</option>
+                <option value="ine2" selected>INE2</option>
+                <option value="ine3">INE3</option>
+              </select>
+            </div>
+            <div class="col-half">
+              <div class="input-group">
+                <input type="text" placeholder="salle" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-half">
+              <div class="input-group">
+                <input type="text" placeholder="matiere" />
+              </div>
+            </div>
+            <div class="col-half">
+              <div class="input-group">
+                <input type="text" placeholder="salle" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-half">
+            <h4>jour</h4>
+            <input type="date" class="date" placeholder="DD/MM/YYYY" />
+          </div>
+          <div class="col-half">
+            <div class="col-half">
+              <h4>debut</h4>
+              <div class="input-group">
+                <input type="time" class="time" />
+              </div>
+            </div>
+            <div class="col-half">
+              <h4>fin</h4>
+              <div class="input-group">
+                <input type="time" class="time" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

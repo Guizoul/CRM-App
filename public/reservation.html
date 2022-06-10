@@ -17,51 +17,87 @@
   <body>
     <div class="cadre">
       <div class="headerSearchItem">
-        <div class="date">
-          <label> Date</label>
+        <div class="date item">
+          <label > Date</label>
           <input
             type="date"
             id="start"
             name="trip-start"
             min="2022-01-01"
             max="2030-12-31"
+            
           />
         </div>
-        <div class="heure">
+        <div class="heure item">
           <form action="url here">
             <label for="time">Heure debut</label>
-            <input type="time" id="time input" name="time input:" />
+            <input type="time" id="timeD" name="time input:"
+            min="09:00" max="18:00" required />
           </form>
         </div>
-        <div class="heure">
+        <div class="heure item ">
           <form action="url here">
             <label for="time">Heure fin</label>
-            <input type="time" id="time input" name="time input:" />
+            <input type="time" id="timeF" name="time input:" 
+            min="00:00" max="23:59" required />
           </form>
         </div>
-        <div class="salle">
+        <div class="Repeat item">
+          <label for="fois">fois</label>
+          <input type="text" id="fois" class="fois" />
+        </div>
+        <br>
+        <div class="salle item">
           <label for="type-salle">Type de salle</label>
-          <select>
+          <select id="salleList">
             <option value="Amphitheatre">Amphitheatre</option>
             <option value="Salle-cc">Salle cc</option>
             <option value="Salle-norm">Salle normale</option>
           </select>
         </div>
-        <div class="obejctif">
-          <label for="Objectif">Objectif</label>
-          <input type="text" class="obj" />
+        <!-- <div class="bottomBar">   -->
+        <div class="divCours item">
+          <label for="Objectif">Cours</label>
+          <input type="text" id="cours" class="cours" />
+        </div>
+        <div class="Filiere item">
+          <label for="filiere">Filière</label>
+          <select id="filiere">
+            <option value="Amphitheatre">ASEDS</option>
+            <option value="Salle-cc">DATA</option>
+            <option value="Salle-norm">ICCN</option>
+            <option value="Salle-norm">Cloud&SUD</option>
+            <option value="Salle-norm">SmartICT</option>
+            <option value="Salle-norm">Sesnum</option>
+            <option value="Salle-norm">AMOA</option>
+          </select>
+        </div>
+        <div class="niveau item">
+          <label for="niveau">Niveau </label>
+          <select id="niveau">
+            <option value="INE1">INE1</option>
+            <option value="INE2">INE2</option>
+            <option value="INE3">INE3</option>
+          </select>
         </div>
         <div>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          <button id="bouton" class="btn btn-outline-success my-2 my-sm-0 item" type="submit">
             Search
           </button>
         </div>
+      
       </div>
     </div>
+    <div class="list">
+      <div class="salleList">
+        <span class=""> <p class="text">B12</p> </span>
+        <button class="book">Reserver!</button>
+      </div>
+    </div>
+
     <script
       src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-      type="text/javascript"
-    ></script>
+      type="text/javascript"></script>
     <script src="../public/script/navBar.js"></script>
     <script src="../public/script/reservation.js" type="module"></script>
   </body>
