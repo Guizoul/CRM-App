@@ -13,8 +13,6 @@
     <header class="header"></header>
     <body>
       <div class="navs"></div>
-
-      <script type="module" src="./script/admin.js"></script>
       <style>
         table,
         th,
@@ -104,7 +102,15 @@
           </th>
         </tr>
       </table>
-      <footer class="footer"></footer>
+
+      <script
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+        type="text/javascript"
+      ></script>
+      <script type="module" src="./script/admin.js"></script>
+      <script src="../public/script/navBar.js"></script>
+      <script src="../node_modules/socket.io/client-dist/socket.io.js"></script>
     </body>
+    <footer class="footer"></footer>
   </head>
 </html>

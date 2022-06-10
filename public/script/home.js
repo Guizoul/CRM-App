@@ -6,9 +6,12 @@ createFooter();
 const form = document.querySelector(".form");
 
 // report a problem
-const reportbtn = document.querySelector(".col-5");
-reportbtn.addEventListener("click", () => {
-  location.replace("/contact");
+const reportbtn = document.querySelectorAll(".col-5");
+reportbtn.forEach((element) => {
+  element.style.display = "none";
+  element.addEventListener("click", () => {
+    location.replace("/contact");
+  });
 });
 
 //profile section
@@ -115,9 +118,11 @@ for (let i = 0; i < inebtn.length; i++) {
 
 const emploiNow = (data, niveau) => {
   const emploi = data.planning;
-  console.log(emploi);
   for (let j = 0; j < data.planning.length; j++) {
+    reportbtn[j].style.display = "block";
+
     const row1 = document.querySelector(`.table-row${j + 1}`);
+
     row1.childNodes[1].innerHTML = `<i class="fa fa-map-marker"></i>${emploi[j].idsalle}</div>`;
 
     row1.childNodes[3].innerHTML = ` ${emploi[j].nommatiere}`;
