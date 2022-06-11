@@ -114,12 +114,15 @@ const intAllRoutes = (app, dirname) => {
         const sql5 = `insert into emploi values(${idProf}, ${idClasse}, ${idMatiere}, '${jour}','${debut}', '${fin}', '${idSalle}' )`;
         const executeQuery = await mydatabse.query(sql5);
         inserted = true;
-        return res.json({
-          success: "ajouté à emploi avec succès",
-        });
       }
+    } else {
+      return res.json({ error: "some field(s) wrong!!!" });
     }
-    if (!inserted) {
+    if (inserted) {
+      return res.json({
+        success: "ajouté à emploi avec succès",
+      });
+    } else {
       return res.json({
         fail: "échec de l'insertion dans emploi vérifier les valeurs saisies",
       });
