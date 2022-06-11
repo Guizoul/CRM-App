@@ -4,7 +4,7 @@ let alertbox = document.querySelector(".alert");
 const exitbtn = document.querySelector(".closebtn");
 
 ////////function Myalert to not block the page
-
+alertbox.classList.remove("success");
 const showMyAlert = function (msg) {
   let alertmsg = document.querySelector(".errormsg");
   alertmsg.innerHTML = msg;
@@ -59,6 +59,7 @@ setBtn.addEventListener("click", () => {
     !debut ||
     !fin
   ) {
+    alertbox.style.backgroundColor = "#fa4033b9";
     showMyAlert("Please fill all fields");
   } else {
     let data = [
@@ -82,6 +83,16 @@ setBtn.addEventListener("click", () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.success) {
+          alertbox.style.backgroundColor = "#4bb543";
+          showMyAlert(data.success);
+        } else if (data.fail) {
+          alertbox.style.backgroundColor = "#fa4033b9";
+          showMyAlert(data.fail);
+        } else if (data.error) {
+          alertbox.style.backgroundColor = "#fa4033b9";
+          showMyAlert(data.error);
+        }
       });
     loader.classList.remove("hidden");
     setTimeout(() => {
