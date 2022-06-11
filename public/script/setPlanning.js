@@ -8,25 +8,15 @@ const exitbtn = document.querySelector(".closebtn");
 const showMyAlert = function (msg) {
   let alertmsg = document.querySelector(".errormsg");
   alertmsg.innerHTML = msg;
-  alertbox.classList.remove("display");
+  alertbox.classList.remove("hidden");
   setTimeout(function () {
-    alertbox.classList.add("display");
-  }, 1000);
+    alertbox.classList.add("hidden");
+  }, 1500);
 };
 
-// async function sendData(path, data) {
-//   const res = await fetch(path, {
-//     method: "post",
-//     headers: new Headers({
-//       "Content-Type": "application/json",
-//     }),
-//     body: JSON.stringify(data),
-//   });
-//   const data1 = await res.json();
-// }
 // exit button
 exitbtn.addEventListener("click", function () {
-  alertbox.classList.add("display");
+  alertbox.classList.add("hidden");
 });
 
 setBtn.addEventListener("click", () => {
@@ -43,7 +33,7 @@ setBtn.addEventListener("click", () => {
   const matiere = document.querySelector(".matiere").value;
   const salle = document.querySelector(".salle").value;
   let date = document.querySelector(".date").value;
-  date = Date.parse("06-30-2022");
+  date = Date.parse(date);
   date = new Date(date);
   const weekday = [
     "Sunday",
@@ -93,46 +83,16 @@ setBtn.addEventListener("click", () => {
       .then((data) => {
         console.log(data);
       });
-    loader.classList.remove("display");
+    loader.classList.remove("hidden");
     setTimeout(() => {
-      loader.classList.add("display");
+      loader.classList.add("hidden");
+      document.querySelector(".firstName").value = "";
+      document.querySelector(".lastName").value = "";
       document.querySelector(".matiere").value = "";
       document.querySelector(".salle").value = "";
       document.querySelector(".date").value = "";
       document.querySelector(".debut").value = "";
       document.querySelector(".fin").value = "";
-      document.querySelector(".prof").value = "";
     }, 1000);
-    // const d= await fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: data,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
-
-    // const res= await fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: data,
-    //   }),
-    // });
-    // const d = res.json();
-    // fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: d.data,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
   }
 });

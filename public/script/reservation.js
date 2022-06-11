@@ -35,62 +35,41 @@ navelement.innerHTML = `
 
 `;
 
-const date=document.getElementById("start");
-console.log(date);
-const heure_debut=document.getElementById("dateD");
-const heure_fin=document.getElementById("dateF");
-const fois=document.getElementById("fois");
-const salle=document.getElementById("salleList");
-const cours = document.getElementById("cours");
-const filiere=document.getElementById("filiere");
-const niveau=document.getElementById("niveau");
-const bouton=document.getElementById("bouton");
+// const bouton = document.getElementById("bouton");
 
-var timepicker = new TimePicker('time', {
-  lang: 'en',
-  theme: 'dark'
-});
-timepicker.on('change', function(evt) {
-  
-  var value = (evt.hour || '00') + ':' + (evt.minute || '00');
-  evt.element.value = value;
-
-});
-
-bouton.addEventListener("click", ()=>{
+bouton.addEventListener("click", () => {
+  const heure_debut = document.getElementById("timeD").value;
+  const heure_fin = document.getElementById("timeF").value;
+  const fois = document.getElementById("fois").value;
+  const salle = document.getElementById("salleList").value;
+  const cours = document.getElementById("cours").value;
+  const filiere = document.getElementById("filiere").value;
+  const niveau = document.getElementById("niveau").value;
+  const date = document.getElementById("start").value;
+  console.log(date);
   fetch("/reservation", {
-    method:"post",
-    headers: new Headers({"Content-Type" : "application/json"}),
-    body:JSON.stringify({
-      date:date,
-      heure_debut:heure_debut,
-      heure_fin:heure_fin,
-      fois:fois,
-      salle:salle,
-      cours:cours,
-      filiere:filiere,
-      niveau:niveau
-    }).then((res) => res.json()).then((data) =>{
-      displayClassrooms(data)
-    })
+    method: "post",
+    headers: new Headers({ "Content-Type": "application/json" }),
+    body: JSON.stringify({
+      date: date,
+      heure_debut: heure_debut,
+    }),
   })
-})
+    .then((res) => res.json())
+    .then((data) => {
+      displayClassrooms(data);
+    });
+});
 
-const displayClassrooms=(data)=>{
+const displayClassrooms = (data) => {
   const list = document.querySelector(".list");
-  for(let i=0;i<data.SallesDispo.length;i++){
-    list.innerHTML+=`<div class="salleList">
-  <span class=""> <p class="text">${data.SallesDispo[i].idsalle}</p> </span>
+  for (let i = 0; i < data.SallesDispo.length; i++) {
+    list.innerHTML += `<div class="salleList">
+  <span class=""> <p class="text">${data.SallesDispo[i].id}</p> </span>
   <button class="book">Reserver!</button>
-</div>`
+</div>`;
   }
-  
-}
-
-
-
-
-
+};
 
 let ourUser = JSON.parse(sessionStorage.user || null);
 

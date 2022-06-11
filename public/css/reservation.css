@@ -1,51 +1,49 @@
-h2{
-    font-size: 26px;
-    margin: 0;
-    text-align: center;
-    position: relative;
-    top: 0px;
+h2 {
+  font-size: 26px;
+  margin: 0;
+  text-align: center;
+  position: relative;
+  top: 0px;
 }
 
-body
-{
-    margin :0%;
-    padding:0%;
+body {
+  margin: 0%;
+  padding: 0%;
 }
 
-
-.book{
-    z-index: 1;
-    position: relative;
-    background-color: rgba(72, 167, 231, 0.068);
-    radius:5px;
-    color: #fff;
-    border-color: rgba(72, 167, 231, 0.068);
+.book {
+  z-index: 1;
+  position: relative;
+  background-color: rgba(72, 167, 231, 0.068);
+  radius: 5px;
+  color: #fff;
+  border-color: rgba(72, 167, 231, 0.068);
 }
 
 .headerSearchItem {
-    /* display: inline-flex;
+  /* display: inline-flex;
     align-items: center;
     gap: 10px; */
 
-    height: 40px;
-    background-color: #004085;
-    color : white;
-    text-decoration: bold;
-    border: 3px solid 3C91E6;
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 10px 0px;
-    /* position: relative; */
-    top: 100px;
-    /* bottom: -50px; */
-    width: 100%;
-    max-width: 1024px;
-    border-radius: 25px;
+  height: 40px;
+  background-color: #004085;
+  color: white;
+  text-decoration: bold;
+  border: 3px solid 3C91E6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+  /* position: relative; */
+  top: 100px;
+  /* bottom: -50px; */
+  width: 100%;
+  max-width: 1024px;
+  border-radius: 25px;
 
-    position: relative;
-    left: 10%;
-    top: 10%;
+  position: relative;
+  left: 10%;
+  top: 10%;
 }
 
 /* 
@@ -64,19 +62,18 @@ body
     max-width: 1024px;
   } */
 
-.cadre{
-    height: 200px;
-    background-color: #ffffff7d;
+.cadre {
+  height: 200px;
+  background-color: #ffffff7d;
 
-    top: 1px;
-    position:relative;
-    margin:  0;
-   padding: 0;
-
+  top: 1px;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 .fois {
-    width : 20px
+  width: 20px;
 }
 
 /* .divCours{
@@ -84,9 +81,8 @@ body
     bottom:10px;
     left: 150px;
 } */
-.cours{
-    width: 200px;
-
+.cours {
+  width: 200px;
 }
 
 /* .Filiere{
@@ -94,65 +90,68 @@ body
     bottom:0;
 } */
 
-.bottomBar{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    position:absolute;
-    bottom: 10;
-
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 10;
 }
 
 .item {
-    /* width: 50px;
+  /* width: 50px;
     height: 50px; */
-    margin: 0 5px;
-  }
-
-
-.list{
-    background-color: #004085;
-    height: 400px;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    margin:auto;
-    padding: 4px 4px 4px;
-    border-radius: 25px;
-    position : relative;
-    bottom: 55px;
-    /* left: 20px; */
+  margin: 0 5px;
 }
 
-.salleList{
-    background-color:  #DBEBFA;
-    height: 40px;
-    width: 100%;
-    margin: 2px;
-    padding: 4px 4px;
-    border-radius: 20px;
-    position: relative;
-    top: 15px;
-    display: block;
-    justify-content: space-between;
-
+.list {
+  background-color: #004085;
+  height: 400px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 4px 4px 4px;
+  border-radius: 25px;
+  position: relative;
+  bottom: 55px;
+  /* left: 20px; */
+  display: flex;
+  flex-direction: column;
 }
 
-.book{
-    background-color: #004085;
-    justify-content: end;
-    position:absolute;
-    top: 12px;
-    left: 900px;
-    
+.salleList {
+  background-color: #dbebfa;
+  height: 40px;
+  width: 100%;
+  margin: 2px;
+  padding: 4px 4px;
+  border-radius: 20px;
+  position: relative;
+  top: 15px;
+  display: block;
+  justify-content: space-between;
 }
-.text{
-    position: relative;
-    bottom: 5px;
-    left:2%;
-    font-size: 16px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+.book {
+  background-color: #004085;
+  justify-content: end;
+  position: absolute;
+  top: 12px;
+  left: 900px;
 }
+.text {
+  position: relative;
+  bottom: 5px;
+  left: 2%;
+  font-size: 16px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.footer {
+  position: fixed;
+}
+<<<<<<< HEAD
 
 
 *,
@@ -412,3 +411,5 @@ button:hover {
 .footer{
     position: fixed;
 }
+=======
+>>>>>>> 1cabb1b763dbfacd77acd877add0550e1d772a8b
