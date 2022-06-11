@@ -34,7 +34,7 @@ const intAllRoutes = (app, dirname) => {
       niveau,
       bouton,
     } = req.body;
-    const QList = `SELECT salles.id FROM salles where reservee=false not in (select reservation.idsalle as id from reservation where Dateres="2022-06-10" and heuredebut="10:00:00") ;
+    const QList = `select id from salles where reservee=false and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}");
     `;
     const result = await mydatabse.query(QList);
     console.log(result);

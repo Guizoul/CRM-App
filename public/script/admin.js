@@ -67,3 +67,14 @@ console.log(emploi_form);
 emploi_form.addEventListener("click", () => {
   location.replace("/admin/setPlanning");
 });
+
+getStas = () => {
+  fetch("/admin", {
+    method: "post",
+    headers: new Headers({ "Content-Type": "application/json" }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      setStats(data);
+    });
+};
