@@ -246,6 +246,6 @@ button:hover {
   z-index: 9;
 }
 
-.display {
+.hidden {
   display: none;
 }

@@ -8,9 +8,9 @@ const exitbtn = document.querySelector(".closebtn");
 const showMyAlert = function (msg) {
   let alertmsg = document.querySelector(".errormsg");
   alertmsg.innerHTML = msg;
-  alertbox.classList.remove("display");
+  alertbox.classList.remove("hidden");
   setTimeout(function () {
-    alertbox.classList.add("display");
+    alertbox.classList.add("hidden");
   }, 1000);
 };
 
@@ -26,7 +26,7 @@ const showMyAlert = function (msg) {
 // }
 // exit button
 exitbtn.addEventListener("click", function () {
-  alertbox.classList.add("display");
+  alertbox.classList.add("hidden");
 });
 
 setBtn.addEventListener("click", () => {
@@ -43,7 +43,7 @@ setBtn.addEventListener("click", () => {
   const matiere = document.querySelector(".matiere").value;
   const salle = document.querySelector(".salle").value;
   let date = document.querySelector(".date").value;
-  date = Date.parse("06-30-2022");
+  date = Date.parse(date);
   date = new Date(date);
   const weekday = [
     "Sunday",
@@ -93,15 +93,16 @@ setBtn.addEventListener("click", () => {
       .then((data) => {
         console.log(data);
       });
-    loader.classList.remove("display");
+    loader.classList.remove("hidden");
     setTimeout(() => {
-      loader.classList.add("display");
+      loader.classList.add("hidden");
+      document.querySelector(".firstName").value = "";
+      document.querySelector(".lastName").value = "";
       document.querySelector(".matiere").value = "";
       document.querySelector(".salle").value = "";
       document.querySelector(".date").value = "";
       document.querySelector(".debut").value = "";
       document.querySelector(".fin").value = "";
-      document.querySelector(".prof").value = "";
     }, 1000);
     // const d= await fetch("/admin/setPlanning", {
     //   method: "post",
