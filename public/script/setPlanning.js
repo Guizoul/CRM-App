@@ -11,19 +11,9 @@ const showMyAlert = function (msg) {
   alertbox.classList.remove("hidden");
   setTimeout(function () {
     alertbox.classList.add("hidden");
-  }, 1000);
+  }, 1500);
 };
 
-// async function sendData(path, data) {
-//   const res = await fetch(path, {
-//     method: "post",
-//     headers: new Headers({
-//       "Content-Type": "application/json",
-//     }),
-//     body: JSON.stringify(data),
-//   });
-//   const data1 = await res.json();
-// }
 // exit button
 exitbtn.addEventListener("click", function () {
   alertbox.classList.add("hidden");
@@ -104,36 +94,5 @@ setBtn.addEventListener("click", () => {
       document.querySelector(".debut").value = "";
       document.querySelector(".fin").value = "";
     }, 1000);
-    // const d= await fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: data,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
-
-    // const res= await fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: data,
-    //   }),
-    // });
-    // const d = res.json();
-    // fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: d.data,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
   }
 });
