@@ -2,6 +2,7 @@ const schedule = require("node-schedule");
 const { Database, dbCheckUsers } = require("../public/script/Dbservices.js");
 const mydatabse = new Database();
 const jwt = require("jsonwebtoken");
+const { TIME } = require("sequelize");
 
 const authenticateToken = require("../public/middleware/authJWT.js").default;
 
@@ -22,14 +23,23 @@ const intAllRoutes = (app, dirname) => {
   });
 
   app.post("/reservation", async (req, res) => {
-    console.log(req.body);
-    let { date, heure_debut, heure_fin, fois, salle, cours,filiere,niveau,bouton } = req.body;
-    const QList=`SELECT * FROM salles INNER JOIN reservation ON salles.idsalle=resrvation.idsalle where reservation.Dateres!=${date} and reservation.heuredebut!=${heure_debut} and salles.reservee=false;`
+    let {
+      date,
+      heure_debut,
+      heure_fin,
+      fois,
+      salle,
+      cours,
+      filiere,
+      niveau,
+      bouton,
+    } = req.body;
+    const QList = `SELECT salles.id FROM salles where reservee=false not in (select reservation.idsalle as id from reservation where Dateres="2022-06-10" and heuredebut="10:00:00") ;
+    `;
     const result = await mydatabse.query(QList);
+    console.log(result);
     return res.json({ SallesDispo: result });
   });
-
-
 
   //
   app.get("/admin", (req, res) => {
@@ -41,13 +51,21 @@ const intAllRoutes = (app, dirname) => {
   app.post("/admin/contact", async (req, res) => {
     console.log("a report msg has arrived ");
     console.log(req.body);
-    sql = `insert into reportpb values("${req.body.name}","${req.body.Classe}","${req.body.ReportMsg}");`;
+    let currentDate = new Date();
+    let time =
+      currentDate.getHours() +
+      ":" +
+      currentDate.getMinutes() +
+      ":" +
+      currentDate.getSeconds();
+    sql = `insert into reportpb values("${req.body.name}","${req.body.Classe}","${req.body.ReportMsg}" ,"${time}");`;
     const result = await mydatabse.query(sql);
     return res.json({ success: "inserted successfully" });
   });
   app.post("/admin/contact/getReports", async (req, res) => {
     sql = `SELECT * FROM reportpb`;
     const result = await mydatabse.query(sql);
+    console.log(result);
     return res.json({
       reports: result,
     });

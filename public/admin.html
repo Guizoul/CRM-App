@@ -9,108 +9,116 @@
     />
     <link rel="stylesheet" href="/public/css/navbar.css" />
     <title>AMDMIN PAGE</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid white;
 
-    <header class="header"></header>
-    <body>
-      <div class="navs"></div>
-      <style>
-        table,
-        th,
-        td {
-          border: 1px solid white;
+        padding: 30px;
+      }
+      table {
+        border-spacing: 15px;
+      }
 
-          padding: 30px;
-        }
-        table {
-          border-spacing: 15px;
-        }
+      tr:nth-child(even) {
+        background-color: #62b5d1;
+      }
+      tr:nth-child(odd) {
+        background-color: #6495ed;
+      }
 
-        tr:nth-child(even) {
-          background-color: #fff0f5;
-        }
-        tr:nth-child(odd) {
-          background-color: #f5fffa;
-        }
-
-        body {
-          color: white;
-          font-family: Verdana;
-        }
-        h2 {
-          margin: auto;
-          width: 60%;
-          text-align: center;
-          color: black;
-          padding: 70px;
-        }
-        .text1 {
-          color: black;
-          padding: 50px;
-          font-family: Verdana;
-          text-align: center;
-        }
-      </style>
-
-      <h2>Tableau de bord</h2>
-      <form action="/action_page.php">
-        <label for="cars">
-          <span class="text1">Domaine de visibilité</span>:</label
-        >
-        <input
-          type="date"
-          id="start"
-          name="trip-start"
-          value="2022-05-22"
-          min="2022-05-22"
-          max="2022-12-31"
-        />
-        <br /><br />
-      </form>
-      <table style="width: 100%">
-        <tr>
-          <th>
-            <span style="color: #006400">Salles disponibles </span><br />
-            <br />
-            <span style="color: black">38</span>
-          </th>
-          <th>
-            <span style="color: #006400">Amphis disponibles</span> <br />
-            <br />
-            <span style="color: black">8</span>
-          </th>
-          <th>
-            <span style="color: #006400">CCs disponibles</span><br /><br />
-            <span style="color: black">3</span>
-          </th>
-        </tr>
-
-        <tr>
-          <th>
-            <span style="color: #8b0000">Salles occupées</span> <br />
-            <br />
-            <span style="color: black">23</span>
-          </th>
-          <th>
-            <span style="color: #8b0000">Amphis occupés</span> <br />
-            <br />
-            <span style="color: black">2</span>
-          </th>
-          <th>
-            <span style="color: #8b0000">CCs occupés</span> <br />
-            <br />
-            <span style="color: black">2</span>
-          </th>
-        </tr>
-      </table>
-
-      <script
-        src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-        type="text/javascript"
-      ></script>
-      <script type="module" src="./script/admin.js"></script>
-      <script src="../public/script/navBar.js"></script>
-      <script src="../node_modules/socket.io/client-dist/socket.io.js"></script>
-    </body>
-    <footer class="footer"></footer>
+      body {
+        color: white;
+        font-family: Verdana;
+      }
+      h2 {
+        margin: auto;
+        width: 60%;
+        text-align: center;
+        color: black;
+        padding: 70px;
+      }
+      .text1 {
+        color: black;
+        padding: 50px;
+        font-family: Verdana;
+        text-align: center;
+      }
+    </style>
   </head>
+  <header class="header"></header>
+  <body>
+    <div class="navs"></div>
+
+    <h2>Tableau de bord</h2>
+    <form action="/action_page.php">
+      <label for="cars">
+        <span class="text1">Domaine de visibilité</span>:</label
+      >
+      <input
+        type="date"
+        id="start"
+        name="trip-start"
+        value="2022-05-22"
+        min="2022-05-22"
+        max="2022-12-31"
+      />
+      <br /><br />
+    </form>
+    <form action="/action_page.php">
+      <label for="cars"><span class="text1">Chioisir la vacation</span>:</label>
+      <select name="cars" id="cars">
+        <option value="volvo">9:00 à 10:30</option>
+        <option value="saab">11:00 à 12:30</option>
+        <option value="opel">14:00 à 15:30</option>
+        <option value="audi">16:00 à 17:30</option>
+      </select>
+    </form>
+    <table style="width: 100%">
+      <tr>
+        <th>
+          <span style="color: #000000">Salles disponibles </span><br />
+          <br />
+          <span style="color: black">38</span>
+        </th>
+        <th>
+          <span style="color: #000000">Amphis disponibles</span> <br />
+          <br />
+          <span style="color: black">8</span>
+        </th>
+        <th>
+          <span style="color: #000000">CCs disponibles</span><br /><br />
+          <span style="color: black">3</span>
+        </th>
+      </tr>
+
+      <tr>
+        <th>
+          <span style="color: #000000">Salles occupées</span> <br />
+          <br />
+          <span style="color: black">23</span>
+        </th>
+        <th>
+          <span style="color: #000000">Amphis occupés</span> <br />
+          <br />
+          <span style="color: black">2</span>
+        </th>
+        <th>
+          <span style="color: #000000">CCs occupés</span> <br />
+          <br />
+          <span style="color: black">2</span>
+        </th>
+      </tr>
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </table>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script type="module" src="./script/admin.js"></script>
+    <script src="../public/script/navBar.js"></script>
+    <script src="../node_modules/socket.io/client-dist/socket.io.js"></script>
+    <footer class="footer"></footer>
+  </body>
 </html>
