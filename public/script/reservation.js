@@ -35,43 +35,126 @@ navelement.innerHTML = `
 
 `;
 
+let ourUser = JSON.parse(sessionStorage.user || null);
 // const bouton = document.getElementById("bouton");
+let heure_debut = document.getElementById("timeD").value;
+let heure_fin = document.getElementById("timeF").value;
+let fois = document.getElementById("fois").value;
+let typeSalle = document.getElementById("salleList").value;
+let cours = document.getElementById("cours").value;
+let filiere = document.getElementById("filiere").value;
+let niveau = document.getElementById("niveau").value;
+let date = document.getElementById("date").value;
+
+let alertbox = document.querySelector(".alert");
+const exitbtn = document.querySelector(".closebtn");
+alertbox.classList.remove("success");
+const loader = document.querySelector(".loader");
+
+const showAlert = function (msg) {
+  let alertmsg = document.querySelector(".errormsg");
+  alertmsg.innerHTML = msg;
+  alertbox.classList.remove("hidden");
+  setTimeout(function () {
+    alertbox.classList.add("hidden");
+  }, 1500);
+};
+
+// exit button
+exitbtn.addEventListener("click", function () {
+  alertbox.classList.add("hidden");
+});
 
 bouton.addEventListener("click", () => {
-  const heure_debut = document.getElementById("timeD").value;
-  const heure_fin = document.getElementById("timeF").value;
-  const fois = document.getElementById("fois").value;
-  const salle = document.getElementById("salleList").value;
-  const cours = document.getElementById("cours").value;
-  const filiere = document.getElementById("filiere").value;
-  const niveau = document.getElementById("niveau").value;
-  const date = document.getElementById("start").value;
-  console.log(date);
-  fetch("/reservation", {
-    method: "post",
-    headers: new Headers({ "Content-Type": "application/json" }),
-    body: JSON.stringify({
-      date: date,
-      heure_debut: heure_debut,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      displayClassrooms(data);
-    });
+  heure_debut = document.getElementById("timeD").value;
+  heure_fin = document.getElementById("timeF").value;
+  fois = document.getElementById("fois").value;
+  typeSalle = document.getElementById("salleList").value;
+  cours = document.getElementById("cours").value;
+  filiere = document.getElementById("filiere").value;
+  niveau = document.getElementById("niveau").value;
+  date = document.getElementById("date").value;
+  if (
+    !fois ||
+    !date ||
+    !heure_debut ||
+    !heure_fin ||
+    !typeSalle ||
+    !cours ||
+    !filiere ||
+    !niveau
+  ) {
+    alertbox.style.backgroundColor = "#fa4033b9";
+    showAlert("Merci de remplir tous les champs");
+  } else {
+    loader.style.display = "block";
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 3000);
+
+    fetch("/reservation", {
+      method: "post",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify({
+        date: date,
+        heure_debut: heure_debut,
+        heure_fin: heure_fin,
+        typeSalle: typeSalle,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        displayClassrooms(data);
+      });
+  }
 });
 
 const displayClassrooms = (data) => {
-  const list = document.querySelector(".list");
+  const list = document.querySelector(".scroll-container");
+  list.scrollIntoView({ behavior: "smooth" });
+  list.innerHTML = "";
   for (let i = 0; i < data.SallesDispo.length; i++) {
-    list.innerHTML += `<div class="salleList">
-  <span class=""> <p class="text">${data.SallesDispo[i].id}</p> </span>
-  <button class="book">Reserver!</button>
-</div>`;
+    list.innerHTML += `<div class="inline">
+    <h4>${data.SallesDispo[i].id}</h4> 
+    <button class="reserver">Réserver!</button>
+    </div>`;
+  }
+  // reservation events
+  const reserver = document.querySelectorAll(".reserver");
+  for (let i = 0; i < reserver.length; i++) {
+    reserver[i].addEventListener("click", () => {
+      let salle = reserver[i].previousElementSibling.innerHTML;
+      loader.style.display = "block";
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 3000);
+      const permession = confirm(
+        `Voulez-vous vraiment réserver la salle ${salle}?`
+      );
+      if (permession) {
+        fetch("/reservation", {
+          method: "put",
+          headers: new Headers({ "Content-Type": "application/json" }),
+          body: JSON.stringify({
+            date: date,
+            heure_debut: heure_debut,
+            heure_fin: heure_fin,
+            salle: salle,
+            filiere: filiere,
+            niveau: niveau,
+            idprof: ourUser.id,
+            matiere: cours,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            alertbox.style.backgroundColor = "#4bb543";
+            showAlert(data.booked);
+          });
+      }
+    });
   }
 };
-
-let ourUser = JSON.parse(sessionStorage.user || null);
 
 // planning section
 

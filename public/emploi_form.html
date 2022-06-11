@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../public/css/emploi_form.css" />
     <link rel="icon" href="../public/imgs/inptwhite.png" />
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+
     <title>emploi du temps</title>
   </head>
   <body>
@@ -14,84 +16,92 @@
       <button type="button" class="closebtn"><span>&times;</span></button>
       <p class="errormsg">This is an alert box.</p>
     </div>
-    <div class="container">
-      <form>
-        <div class="row">
-          <h4>Emploi du temps</h4>
+    <div class="global-container">
+      <div class="container">
+        <form>
           <div class="row">
-            <div class="col-half">
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="firstName"
-                  placeholder="prenom prof"
-                />
+            <h4>Emploi du temps</h4>
+            <div class="row">
+              <div class="col-half">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="firstName"
+                    placeholder="prenom prof"
+                  />
+                </div>
+              </div>
+              <div class="col-half">
+                <div class="input-group">
+                  <input class="lastName" type="text" placeholder="nom prof" />
+                </div>
               </div>
             </div>
-            <div class="col-half">
-              <div class="input-group">
-                <input class="lastName" type="text" placeholder="nom prof" />
-              </div>
-            </div>
-          </div>
-          <div class="col-half input-group">
-            <select id="filiere">
-              <option value="AMOA">AMOA</option>
-              <option value="ASEDS" selected>ASEDS</option>
-              <option value="DATA">DATA</option>
-              <option value="CLOUD">CLOUD</option>
-              <option value="SESNUM">SESNUM</option>
-              <option value="ICCN">ICCN</option>
-              <option value="SMART">SMART</option>
-            </select>
-          </div>
-
-          <div class="row">
             <div class="col-half input-group">
-              <select id="niveau">
-                <option value="INE1" selected>INE1</option>
-                <option value="INE2">INE2</option>
-                <option value="INE3">INE3</option>
+              <select id="filiere">
+                <option value="AMOA">AMOA</option>
+                <option value="ASEDS" selected>ASEDS</option>
+                <option value="DATA">DATA</option>
+                <option value="CLOUDIOT">CLOUDIOT</option>
+                <option value="SESNUM">SESNUM</option>
+                <option value="ICCN">ICCN</option>
+                <option value="SMARTICT">SMARTICT</option>
               </select>
             </div>
+
+            <div class="row">
+              <div class="col-half input-group">
+                <select id="niveau">
+                  <option value="INE1" selected>INE1</option>
+                  <option value="INE2">INE2</option>
+                  <option value="INE3">INE3</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-half">
+                <div class="input-group">
+                  <input type="text" class="matiere" placeholder="matiere" />
+                </div>
+              </div>
+              <div class="col-half">
+                <div class="input-group">
+                  <input class="salle" type="text" placeholder="salle" />
+                </div>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-half">
-              <div class="input-group">
-                <input type="text" class="matiere" placeholder="matiere" />
-              </div>
+              <h4>jour</h4>
+              <input type="date" class="date" placeholder="DD/MM/YYYY" />
             </div>
             <div class="col-half">
-              <div class="input-group">
-                <input class="salle" type="text" placeholder="salle" />
+              <div class="col-half">
+                <h4>debut</h4>
+                <div class="input-group">
+                  <input type="time" class="debut" />
+                </div>
+              </div>
+              <div class="col-half">
+                <h4>fin</h4>
+                <div class="input-group">
+                  <input type="time" class="fin" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-half">
-            <h4>jour</h4>
-            <input type="date" class="date" placeholder="DD/MM/YYYY" />
+          <div class="btn-container">
+            <button type="button" class="setBtn">Confirmer</button>
           </div>
-          <div class="col-half">
-            <div class="col-half">
-              <h4>debut</h4>
-              <div class="input-group">
-                <input type="time" class="debut" />
-              </div>
-            </div>
-            <div class="col-half">
-              <h4>fin</h4>
-              <div class="input-group">
-                <input type="time" class="fin" />
-              </div>
-            </div>
-          </div>
+        </form>
+      </div>
+      <div class="container">
+        <div class="input-group search-group">
+          <span class="iconify" data-icon="ant-design:search-outlined"></span>
+          <input class="search" type="text" placeholder="rechercher prof ..." />
         </div>
-        <div class="btn-container">
-          <button type="button" class="setBtn">Confirmer</button>
-        </div>
-      </form>
+      </div>
     </div>
     <script src="../public/script/setPlanning.js" type="module"></script>
   </body>

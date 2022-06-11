@@ -4,26 +4,16 @@ let alertbox = document.querySelector(".alert");
 const exitbtn = document.querySelector(".closebtn");
 
 ////////function Myalert to not block the page
-
+alertbox.classList.remove("success");
 const showMyAlert = function (msg) {
   let alertmsg = document.querySelector(".errormsg");
   alertmsg.innerHTML = msg;
   alertbox.classList.remove("hidden");
   setTimeout(function () {
     alertbox.classList.add("hidden");
-  }, 1000);
+  }, 1500);
 };
 
-// async function sendData(path, data) {
-//   const res = await fetch(path, {
-//     method: "post",
-//     headers: new Headers({
-//       "Content-Type": "application/json",
-//     }),
-//     body: JSON.stringify(data),
-//   });
-//   const data1 = await res.json();
-// }
 // exit button
 exitbtn.addEventListener("click", function () {
   alertbox.classList.add("hidden");
@@ -69,6 +59,7 @@ setBtn.addEventListener("click", () => {
     !debut ||
     !fin
   ) {
+    alertbox.style.backgroundColor = "#fa4033b9";
     showMyAlert("Please fill all fields");
   } else {
     let data = [
@@ -92,6 +83,16 @@ setBtn.addEventListener("click", () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.success) {
+          alertbox.style.backgroundColor = "#4bb543";
+          showMyAlert(data.success);
+        } else if (data.fail) {
+          alertbox.style.backgroundColor = "#fa4033b9";
+          showMyAlert(data.fail);
+        } else if (data.error) {
+          alertbox.style.backgroundColor = "#fa4033b9";
+          showMyAlert(data.error);
+        }
       });
     loader.classList.remove("hidden");
     setTimeout(() => {
@@ -104,36 +105,5 @@ setBtn.addEventListener("click", () => {
       document.querySelector(".debut").value = "";
       document.querySelector(".fin").value = "";
     }, 1000);
-    // const d= await fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: data,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
-
-    // const res= await fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: data,
-    //   }),
-    // });
-    // const d = res.json();
-    // fetch("/admin/setPlanning", {
-    //   method: "post",
-    //   headers: new Headers({ "Content-Type": "application/json" }),
-    //   body: JSON.stringify({
-    //     data: d.data,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
   }
 });
