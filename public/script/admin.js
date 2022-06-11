@@ -30,7 +30,7 @@ navelement.innerHTML = `
               <a href="javascript:void(0);">Book</a>
             </li>
             <li>
-              <a href="javascript:void(0);">Set planing</a>
+              <a href="javascript:void(0);" class="setPlanning">Set planing</a>
             </li>
           </ul>
           </li>
@@ -60,4 +60,10 @@ const socket = io();
 
 socket.on("message", (msg) => {
   console.log(msg);
+});
+
+const emploi_form = document.querySelector(".setPlanning");
+console.log(emploi_form);
+emploi_form.addEventListener("click", () => {
+  location.replace("/admin/setPlanning");
 });
