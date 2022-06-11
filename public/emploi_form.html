@@ -4,44 +4,66 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/emploi_form.css" />
+    <link rel="stylesheet" href="../public/css/emploi_form.css" />
+    <link rel="icon" href="../public/imgs/inptwhite.png" />
     <title>emploi du temps</title>
   </head>
   <body>
+    <img class="loader display" src="../public/imgs/R.gif" alt="" srcset="" />
+    <div class="alert display">
+      <button type="button" class="closebtn"><span>&times;</span></button>
+      <p class="errormsg">This is an alert box.</p>
+    </div>
     <div class="container">
       <form>
         <div class="row">
           <h4>Emploi du temps</h4>
-          <div class="input-group">
-            <input type="text" placeholder="Nom de prof" />
+          <div class="row">
+            <div class="col-half">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="firstName"
+                  placeholder="prenom prof"
+                />
+              </div>
+            </div>
+            <div class="col-half">
+              <div class="input-group">
+                <input class="lastName" type="text" placeholder="nom prof" />
+              </div>
+            </div>
           </div>
-          <div class="input-group">
-            <input type="text" placeholder="filiere" />
+          <div class="col-half input-group">
+            <select id="filiere">
+              <option value="AMOA">AMOA</option>
+              <option value="ASEDS" selected>ASEDS</option>
+              <option value="DATA">DATA</option>
+              <option value="CLOUD">CLOUD</option>
+              <option value="SESNUM">SESNUM</option>
+              <option value="ICCN">ICCN</option>
+              <option value="SMART">SMART</option>
+            </select>
           </div>
 
           <div class="row">
             <div class="col-half input-group">
-              <select id="filiere">
-                <option value="ine1">INE1</option>
-                <option value="ine2" selected>INE2</option>
-                <option value="ine3">INE3</option>
+              <select id="niveau">
+                <option value="INE1" selected>INE1</option>
+                <option value="INE2">INE2</option>
+                <option value="INE3">INE3</option>
               </select>
-            </div>
-            <div class="col-half">
-              <div class="input-group">
-                <input type="text" placeholder="salle" />
-              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-half">
               <div class="input-group">
-                <input type="text" placeholder="matiere" />
+                <input type="text" class="matiere" placeholder="matiere" />
               </div>
             </div>
             <div class="col-half">
               <div class="input-group">
-                <input type="text" placeholder="salle" />
+                <input class="salle" type="text" placeholder="salle" />
               </div>
             </div>
           </div>
@@ -55,18 +77,22 @@
             <div class="col-half">
               <h4>debut</h4>
               <div class="input-group">
-                <input type="time" class="time" />
+                <input type="time" class="debut" />
               </div>
             </div>
             <div class="col-half">
               <h4>fin</h4>
               <div class="input-group">
-                <input type="time" class="time" />
+                <input type="time" class="fin" />
               </div>
             </div>
           </div>
         </div>
+        <div class="btn-container">
+          <button type="button" class="setBtn">Confirmer</button>
+        </div>
       </form>
     </div>
+    <script src="../public/script/setPlanning.js" type="module"></script>
   </body>
 </html>
