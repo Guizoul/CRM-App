@@ -228,22 +228,36 @@ button:hover {
   position: fixed;
   width: 247px;
   top: 35%;
-  left: 45%;
+  left: 43%;
 }
 
 .alert {
   font-family: "Roboto", sans-serif;
   width: 45%;
-  padding: 15px;
-  background-color: #fa4033a1;
+  padding: 10px 20px;
+  background-color: #fa4033b9;
   color: white;
+  font-weight: bold;
   margin-bottom: 15px;
   font-size: larger;
-  margin-left: 300px;
+  /* margin-left: 300px; */
   position: absolute;
-  left: 5%;
-  top: 36%;
+  left: 28%;
+  top: 42%;
   z-index: 9;
+  text-align: center;
+}
+
+.alert button {
+  padding: 1px;
+  margin-bottom: -5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden {
