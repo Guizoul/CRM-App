@@ -73,30 +73,6 @@ const intAllRoutes = (app, dirname) => {
   app.get("/admin/setPlanning", (req, res) => {
     res.sendFile(dirname + "/public/emploi_form.html");
   });
-  // app.post("/admin/setPlanning", (req, res) => {
-  //   console.log("setting emploi...");
-  //   sql1 = `select from professeurs `;
-  // });
-  //
-  app.get("/login", (req, res) => {
-    res.sendFile(dirname + "/public/login.html");
-  });
-
-  //home
-  app.get("/", (req, res) => {
-    res.sendFile(dirname + "/public/home.html");
-  });
-
-  app.post("/", async (req, res) => {
-    //
-    const niveau = req.body.niveau + 1;
-    const jour = req.body.jour;
-    const time = req.body.time;
-    const sql = `select firstname,lastname,classe.nomfiliere,classe.niveau,matiere.nommatiere,emploi.idsalle
-      from (emploi inner join classe on classe.idclasse=emploi.idclasse) inner join matiere on matiere.idmatiere=emploi.idmatiere inner join professeurs on professeurs.id=emploi.idprof where classe.niveau=? and jour=? and debut=?;`;
-    const result = await mydatabse.query(sql, [niveau, jour, time]);
-    return res.json({ planning: result });
-  });
   app.post("/admin/setPlanning", async (req, res) => {
     console.log("setting emploi...");
     console.log(req.body);
@@ -140,14 +116,39 @@ const intAllRoutes = (app, dirname) => {
         inserted = true;
       }
     } else {
-      console.log("some field(s) is rong!!!");
+      res.json({ error: "some field(s) wrong!!!" });
     }
     if (inserted) {
-      console.log("added to emploi successfully");
+      res.json({
+        success: "ajouté à emploi avec succès",
+      });
     } else {
-      console.log("failed to insert");
+      return res.json({
+        fail: "échec de l'insertion dans emploi vérifier les valeurs saisies",
+      });
     }
   });
+
+  app.get("/login", (req, res) => {
+    res.sendFile(dirname + "/public/login.html");
+  });
+
+  //home
+  app.get("/", (req, res) => {
+    res.sendFile(dirname + "/public/home.html");
+  });
+
+  app.post("/", async (req, res) => {
+    //
+    const niveau = req.body.niveau + 1;
+    const jour = req.body.jour;
+    const time = req.body.time;
+    const sql = `select firstname,lastname,classe.nomfiliere,classe.niveau,matiere.nommatiere,emploi.idsalle
+      from (emploi inner join classe on classe.idclasse=emploi.idclasse) inner join matiere on matiere.idmatiere=emploi.idmatiere inner join professeurs on professeurs.id=emploi.idprof where classe.niveau=? and jour=? and debut=?;`;
+    const result = await mydatabse.query(sql, [niveau, jour, time]);
+    return res.json({ planning: result });
+  });
+
   //plan inpt
   app.get("/planinpt", (req, res) => {
     res.sendFile(dirname + "/public/plan.html");
