@@ -1,159 +1,4 @@
-h2 {
-  font-size: 26px;
-  margin: 0;
-  text-align: center;
-  position: relative;
-  top: 0px;
-}
-
-body {
-  margin: 0%;
-  padding: 0%;
-}
-
-.book {
-  z-index: 1;
-  position: relative;
-  background-color: rgba(72, 167, 231, 0.068);
-  radius: 5px;
-  color: #fff;
-  border-color: rgba(72, 167, 231, 0.068);
-}
-
-.headerSearchItem {
-  /* display: inline-flex;
-    align-items: center;
-    gap: 10px; */
-
-  height: 40px;
-  background-color: #004085;
-  color: white;
-  text-decoration: bold;
-  border: 3px solid 3C91E6;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0px;
-  /* position: relative; */
-  top: 100px;
-  /* bottom: -50px; */
-  width: 100%;
-  max-width: 1024px;
-  border-radius: 25px;
-
-  position: relative;
-  left: 10%;
-  top: 10%;
-}
-
-/* 
-.headerSearch {
-    height: 30px;
-    background-color: white;
-    border: 3px solid #febb02;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 0px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: -25px;
-    width: 100%;
-    max-width: 1024px;
-  } */
-
-.cadre {
-  height: 200px;
-  background-color: #ffffff7d;
-
-  top: 1px;
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
-.fois {
-  width: 20px;
-}
-
-/* .divCours{
-    position: absolute;
-    bottom:10px;
-    left: 150px;
-} */
-.cours {
-  width: 200px;
-}
-
-/* .Filiere{
-    position:absolute;
-    bottom:0;
-} */
-
-.bottomBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 10;
-}
-
-.item {
-  /* width: 50px;
-    height: 50px; */
-  margin: 0 5px;
-}
-
-.list {
-  background-color: #004085;
-  height: 400px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  padding: 4px 4px 4px;
-  border-radius: 25px;
-  position: relative;
-  bottom: 55px;
-  /* left: 20px; */
-  display: flex;
-  flex-direction: column;
-}
-
-.salleList {
-  background-color: #dbebfa;
-  height: 40px;
-  width: 100%;
-  margin: 2px;
-  padding: 4px 4px;
-  border-radius: 20px;
-  position: relative;
-  top: 15px;
-  display: block;
-  justify-content: space-between;
-}
-
-.book {
-  background-color: #004085;
-  justify-content: end;
-  position: absolute;
-  top: 12px;
-  left: 900px;
-}
-.text {
-  position: relative;
-  bottom: 5px;
-  left: 2%;
-  font-size: 16px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-.footer {
-  position: fixed;
-}
-<<<<<<< HEAD
-
-
+/* 64ac15 */
 *,
 *:before,
 *:after {
@@ -315,12 +160,17 @@ select option {
   transition: all 0.35s ease-in-out;
 }
 .container {
-  max-width: 60em;
-  padding: 3em 5em;
-  margin: 6em auto;
-  background-color: #fff;
-  border-radius: 4.2px;
-  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+    max-width: 60em;
+    padding: 3em 5em;
+    display: flex;
+    margin: 6em auto;
+    background-color: #fff;
+    border-radius: 4.2px;
+    box-shadow: 0px 3px 10px -2px rgb(0 0 0 / 20%);
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    
 }
 .row {
   zoom: 1;
@@ -383,33 +233,74 @@ button:hover {
   position: fixed;
   width: 247px;
   top: 35%;
-  left: 45%;
+  left: 43%;
 }
 
-.color-h3{
-    color: #004085;
-}
 .alert {
   font-family: "Roboto", sans-serif;
   width: 45%;
-  padding: 15px;
-  background-color: #fa4033a1;
+  padding: 10px 20px;
+  background-color: #fa4033b9;
   color: white;
+  font-weight: bold;
   margin-bottom: 15px;
   font-size: larger;
-  margin-left: 300px;
+  /* margin-left: 300px; */
   position: absolute;
-  left: 5%;
-  top: 36%;
+  left: 28%;
+  top: 42%;
   z-index: 9;
+  text-align: center;
 }
 
-.display {
+.alert button {
+  padding: 1px;
+  margin-bottom: -5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
   display: none;
 }
 
-.footer{
-    position: fixed;
+/* {
+    width: 90%;
+    border-radius:20px;
+    background-color: blue;
+    /* display:flex; 
+    justify-content:space-between;
+    list-style-type: none;
+ */
+.inline{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgb(159, 194, 220);
+    height: 60px;
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 10px;
 }
-=======
->>>>>>> 1cabb1b763dbfacd77acd877add0550e1d772a8b
+
+.cont{
+    padding: 5px;
+    background-color: blue;
+}
+.reserver{
+    position: relative;
+    left: 255px;
+}
+
+.scroll-container{
+    overflow-y: scroll;
+}
+
+.max{
+    max-height: 300px;
+}
