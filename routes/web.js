@@ -94,12 +94,12 @@ const intAllRoutes = (app, dirname) => {
       const result2 = await mydatabse.query(sql2);
       const result3 = await mydatabse.query(sql3);
       const result4 = await mydatabse.query(sql4);
-
+      console.log(result1);
       if (
-        result1[0] != undefined &&
-        result2[0] != undefined &&
-        result3[0] != undefined &&
-        result4[0] != undefined
+        result1.length != 0 &&
+        result2.length != 0 &&
+        result3.length != 0 &&
+        result4.length != 0
       ) {
         // extract results values if they're not null
         const idProf = result1[0].id;
@@ -114,15 +114,12 @@ const intAllRoutes = (app, dirname) => {
         const sql5 = `insert into emploi values(${idProf}, ${idClasse}, ${idMatiere}, '${jour}','${debut}', '${fin}', '${idSalle}' )`;
         const executeQuery = await mydatabse.query(sql5);
         inserted = true;
+        return res.json({
+          success: "ajouté à emploi avec succès",
+        });
       }
-    } else {
-      res.json({ error: "some field(s) wrong!!!" });
     }
-    if (inserted) {
-      res.json({
-        success: "ajouté à emploi avec succès",
-      });
-    } else {
+    if (!inserted) {
       return res.json({
         fail: "échec de l'insertion dans emploi vérifier les valeurs saisies",
       });

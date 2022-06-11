@@ -1,3 +1,5 @@
+////////SET PLANNING
+
 const setBtn = document.querySelector(".setBtn");
 const loader = document.querySelector(".loader");
 let alertbox = document.querySelector(".alert");
@@ -11,7 +13,7 @@ const showMyAlert = function (msg) {
   alertbox.classList.remove("hidden");
   setTimeout(function () {
     alertbox.classList.add("hidden");
-  }, 1500);
+  }, 2000);
 };
 
 // exit button
@@ -86,12 +88,12 @@ setBtn.addEventListener("click", () => {
         if (data.success) {
           alertbox.style.backgroundColor = "#4bb543";
           showMyAlert(data.success);
-        } else if (data.fail) {
-          alertbox.style.backgroundColor = "#fa4033b9";
-          showMyAlert(data.fail);
         } else if (data.error) {
           alertbox.style.backgroundColor = "#fa4033b9";
           showMyAlert(data.error);
+        } else if (data.fail) {
+          alertbox.style.backgroundColor = "#fa4033b9";
+          showMyAlert(data.fail);
         }
       });
     loader.classList.remove("hidden");
@@ -106,4 +108,12 @@ setBtn.addEventListener("click", () => {
       document.querySelector(".fin").value = "";
     }, 1000);
   }
+});
+
+/////////// GET PLANNING
+let searchInput = document.querySelector(".search");
+const searchBtn = document.querySelector(".searchBtn");
+
+searchBtn.addEventListener("click", () => {
+  searchInput = searchInput.value;
 });
