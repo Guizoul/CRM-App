@@ -41,10 +41,10 @@ export function createNavs() {
         />
         <ul class="navbar-dropdown">
             <li class="username">
-              USERNAME
+              Nom d'utilisateur
             </li>
             <li>
-              <button class ="logout">logout</button>
+              <button class ="logout">Se déconnecter</button>
             </li>
       </li>
       
@@ -61,22 +61,22 @@ export function createFooter() {
 
   <p class="footer-links">
 
-    <a href="http://localhost:1337/">Home</a>
+    <a href="http://localhost:1337/">Accueil</a>
 
-    <a href="javascript:void(0);">About</a>
+    <a href="javascript:void(0);">à propos</a>
 
     <a href="#">Contact</a>
   </p>
 
   <p class="footer-name">
-    <i>institut Nationale des postes et telecominication</i> © 2022
+    <i>Institut national des postes et télécommunications</i> © 2022
   </p>
 </div>
 
 <div class="footer-center">
   <div>
     <i class="fa fa-map-marker"></i>
-    <p><span>2 avenue Allal Al Fassi Madinat Al Irfane, Rabat</p>
+    <p><span>2 Avenue Allal Al Fassi Madinat Al Irfane, Rabat</p>
   </div>
 
   <div>

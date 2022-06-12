@@ -9,7 +9,7 @@ const navelement = document.querySelector(".nav-list");
 
 navelement.innerHTML = `
 <li>
-<a href="http://localhost:1337/">Home</a>
+<a href="http://localhost:1337/">Accueil</a>
 </li>
 <li>
 <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
@@ -32,7 +32,7 @@ navelement.innerHTML = `
   <li class="username">
   </li>
   <li>
-    <button class ="logout">logout</button>
+    <button class ="logout">se déconnecter</button>
   </li>
 </li>
 
@@ -50,7 +50,7 @@ function updateProfilename(name) {
   namePorfil.innerHTML = name;
 }
 logout.addEventListener("click", () => {
-  const permession = confirm("do you really want to log out?");
+  const permession = confirm("vous voulez vraiment se déconnecter?");
   if (permession) {
     sessionStorage.clear();
     location.replace("/login");

@@ -60,7 +60,7 @@ setBtn.addEventListener("click", () => {
     !fin
   ) {
     alertbox.style.backgroundColor = "#fa4033b9";
-    showMyAlert("Please fill all fields");
+    showMyAlert("Merci de remplir tous les champs");
   } else {
     let data = [
       firstName,

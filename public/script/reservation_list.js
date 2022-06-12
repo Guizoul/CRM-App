@@ -6,7 +6,7 @@ createFooter();
 const navelement = document.querySelector(".nav-list");
 navelement.innerHTML = `
 <li>
-<a href="http://localhost:1337/">Home</a>
+<a href="http://localhost:1337/">Accueil</a>
 </li>
 <li>
 <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>

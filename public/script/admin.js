@@ -7,7 +7,7 @@ const navelement = document.querySelector(".nav-list");
 
 navelement.innerHTML = `
 <li>
-          <a href="http://localhost:1337/">Home</a>
+          <a href="http://localhost:1337/">Accueil</a>
         </li>
         <li>
           <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
@@ -24,13 +24,13 @@ navelement.innerHTML = `
           </ul>
         </li>
         <li>
-          <a href="javascript:void(0);">Planing <i class="fa fa-bell-o"></i></a>
+          <a href="javascript:void(0);">Calendrier <i class="fa fa-bell-o"></i></a>
           <ul class="navbar-dropdown">
             <li>
-              <a href="javascript:void(0);">Book</a>
+              <a href="javascript:void(0);" class="booking">Reservation</a>
             </li>
             <li>
-              <a href="javascript:void(0);" class="setPlanning">Set planing</a>
+              <a href="javascript:void(0);" class="setPlanning">Mettre à jour le calendrier </a>
             </li>
           </ul>
           </li>
@@ -45,17 +45,23 @@ navelement.innerHTML = `
               USERNAME
             </li>
             <li>
-              <button class ="logout">logout</button>
+              <button class ="logout">se déconnecter</button>
             </li>
       </li>
 
 `;
 
+const bookingplace=document.querySelector(".booking")
 const contactplace = document.querySelector(".contact");
 
 contactplace.addEventListener("click", () => {
   location.replace("/admin/contact");
 });
+
+bookingplace.addEventListener("click", () => {
+  location.replace("/admin/booking");
+});
+
 const socket = io();
 
 socket.on("message", (msg) => {
