@@ -118,7 +118,7 @@ const displayClassrooms = (data) => {
   list.scrollIntoView({ behavior: "smooth" });
   list.innerHTML = `<h3 class="color-h3">Salles dsiponibles</h3>`;
   for (let i = 0; i < data.SallesDispo.length; i++) {
-    list.innerHTML += `<div class="inline"><h4>&emsp;${data.SallesDispo[i].id}</h4>  <button class="reserver">Réserver!</button></div>`;
+    list.innerHTML += `<div class="inline"><h4>${data.SallesDispo[i].id}</h4>  <button class="reserver">Réserver!</button></div>`;
   }
   // reservation events
   const reserver = document.querySelectorAll(".reserver");
