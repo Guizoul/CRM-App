@@ -57,6 +57,8 @@ logout.addEventListener("click", () => {
   }
 });
 
+let d = {};
+
 fetch("/etudiant", {
   method: "post",
   headers: new Headers({ "Content-Type": "application/json" }),
@@ -65,8 +67,32 @@ fetch("/etudiant", {
   .then((res) => res.json())
   .then((data) => {
     setPlanning(data, emploiVacations, "etudiant");
+    console.log("hey hey");
+    console.log(data);
+    // console.log(parseInt(salleContainer[0].dataset.index));
+    // for (let i = 0; i < salleContainer.length; i++) {
+    //   console.log(salleContainer[i].dataset.index);
+    // }
+    d = data.planning;
+    console.log(d);
+    let clickedSalle = 88;
+    console.log(salleContainer[0].innerHTML);
+    for (let i = 0; i < salleContainer.length; i++) {
+      salleContainer[i].addEventListener("click", () => {
+        showAlert();
+        for (let j = 0; j < data.planning.length; j++) {
+          const clicked = salleContainer[j].innerHTML.split(" ");
+          console.log(clicked);
+          if (d[j].idsalle === clicked) {
+            clickedSalle = clicked;
+          }
+        }
+        console.log(clickedSalle);
+        // console.log(data.planning[salleContainer[i].dataset.index]);
+      });
+    }
   });
-
+console.log(d);
 const mondayv1m = document.querySelector(".mondayv1m");
 const mondayv2m = document.querySelector(".mondayv2m");
 const mondayv1a = document.querySelector(".mondayv1a");
@@ -127,3 +153,45 @@ var emploiVacations = {
 //     }
 //   }
 // };
+
+///////////////// GET SALLE DESCRIPTION WHEN CLICKED
+const salleContainer = document.querySelectorAll(".cs335");
+
+const getSalleDescription = function () {
+  console.log("------Here we go");
+  console.log(salleContainer.cellIndex);
+};
+
+// console.log(salleContainer[2], salleContainer[8], salleContainer);
+// for (let i = 0; i < salleContainer.length; i++) {
+//   console.log(salleContainer[i].cellIndex);
+// }
+for (let i = 0; i < salleContainer.length; i++) {
+  // console.log(d);
+  // salleContainer[i].addEventListener("click", () => {
+  //   console.log(d.planning[salleContainer[i].dataset.index]);
+  // });
+}
+// mondayv1m.addEventListener("click", () => {
+//   console.log(mondayv1m.innerHTML);
+// });
+
+//////// HANDLE ALERTS AND LOADER
+let alertbox = document.querySelector(".alert");
+const exitbtn = document.querySelector(".closebtn");
+alertbox.classList.remove("success");
+const loader = document.querySelector(".loader");
+
+const showAlert = function (msg) {
+  let alertmsg = document.querySelector(".errormsg");
+  alertbox.style.backgroundColor = "#fa4033b9";
+  alertbox.style.display = "block";
+  // setTimeout(function () {
+  //   alertbox.classList.add("hidden");
+  // }, 1500);
+};
+
+// exit button
+exitbtn.addEventListener("click", function () {
+  alertbox.style.display = "none";
+});
