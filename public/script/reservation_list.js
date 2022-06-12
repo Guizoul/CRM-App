@@ -47,12 +47,21 @@ fetch("/prof/reservationList", {
   });
 const containerMesres = document.querySelector(".container");
 console.log(containerMesres);
-
+function parseISOString(s) {
+  var b = s.split(/\D+/);
+  return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+}
 const setList = (data) => {
   const containerMesres = document.querySelector(".scroll-container");
   for (let i = 0; i < data.booked.length; i++) {
     let date = data.booked[i].Dateres;
     date = date.split("T")[0];
+    // const d = new Date(Date.parse(date));
+
+    let year = date.split("-")[0];
+    let month = date.split("-")[1];
+    let day = parseInt(date.split("-")[2]) + 1;
+    date = year + "-" + month + "-" + day;
     containerMesres.innerHTML += `<div class="inline">&emsp;
       <h4>${data.booked[i].idsalle}</h4>
       <h4>${date}</h4>
@@ -73,22 +82,25 @@ const setList = (data) => {
         annulerList[i].previousElementSibling.previousElementSibling
           .previousElementSibling.previousElementSibling.innerHTML;
 
-      console.log(heurdebut, dateRes, sallecorr);
-
-      fetch("/prof/annulerReservation", {
-        method: "post",
-        headers: new Headers({ "Content-Type": "application/json" }),
-        body: JSON.stringify({
-          id: ourUser.id,
-          salle: sallecorr,
-          dateRes: dateRes,
-          heurdebut: heurdebut,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          location.reload();
-        });
+      const permession = confirm(
+        `Voulez-vous vraiment annuler la reservation de la salle  ${sallecorr}?`
+      );
+      if (permession) {
+        fetch("/prof/annulerReservation", {
+          method: "delete",
+          headers: new Headers({ "Content-Type": "application/json" }),
+          body: JSON.stringify({
+            id: ourUser.id,
+            salle: sallecorr,
+            dateRes: dateRes,
+            heurdebut: heurdebut,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            location.reload();
+          });
+      }
     });
   }
 };

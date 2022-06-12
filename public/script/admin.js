@@ -5,6 +5,14 @@ createFooter();
 
 const navelement = document.querySelector(".nav-list");
 
+const namePorfil = document.querySelector(".username");
+
+function updateProfilename(name) {
+  namePorfil.innerHTML = name;
+}
+//
+let ourUser = JSON.parse(sessionStorage.user || null);
+
 navelement.innerHTML = `
 <li>
           <a href="javascript:void(0);" class="home">Accueil</a>
@@ -51,9 +59,9 @@ navelement.innerHTML = `
 
 `;
 
-const bookingplace=document.querySelector(".booking");
+const bookingplace = document.querySelector(".booking");
 const contactplace = document.querySelector(".contact");
-const homeplace=document.querySelector(".home");
+const homeplace = document.querySelector(".home");
 
 contactplace.addEventListener("click", () => {
   location.replace("/admin/contact");
@@ -63,8 +71,8 @@ bookingplace.addEventListener("click", () => {
   location.replace("/admin/booking");
 });
 
-homeplace.addEventListener("click", ()=>{
-  location.replace("/")
+homeplace.addEventListener("click", () => {
+  location.replace("/");
 });
 
 const socket = io();
@@ -88,4 +96,15 @@ getStas = () => {
     .then((data) => {
       setStats(data);
     });
+};
+
+window.onload = () => {
+  if (!sessionStorage.user) {
+    location.replace("/login");
+  } else {
+    const nameprof = ourUser.name;
+    if (ourUser != null) {
+      updateProfilename(nameprof);
+    }
+  }
 };

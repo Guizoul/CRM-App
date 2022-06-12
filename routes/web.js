@@ -258,12 +258,13 @@ const intAllRoutes = (app, dirname) => {
     return res.json({ booked: result });
   });
 
-  app.post("/prof/annulerReservation", async (req, res) => {
-    const { id, salle, dateRes, heure_debut } = req.body;
-    // const sql = `DELETE FROM reservation Where idsalle=""`;
-    // const result = await mydatabse.query(sql);
-    // console.log(result);
-    // return res.json({ booked: result });
+  app.delete("/prof/annulerReservation", async (req, res) => {
+    const { id, salle, dateRes, heurdebut } = req.body;
+    const sql = `DELETE FROM reservation Where idsalle="${salle}" and Dateres="${dateRes}" and idprof=${id} and heuredebut="${heurdebut}" ;`;
+    console.log(sql);
+    await mydatabse.query(sql);
+
+    return res.json({ success: "deleted" });
   });
   // app.get("/admin/booking", (req, res) => {
   //   res.sendFile(dirname + "/public/reservation_admin.html");
