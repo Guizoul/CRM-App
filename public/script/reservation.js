@@ -112,7 +112,7 @@ bouton.addEventListener("click", () => {
 const displayClassrooms = (data) => {
   const list = document.querySelector(".scroll-container");
   list.scrollIntoView({ behavior: "smooth" });
-  list.innerHTML = "";
+  list.innerHTML = `<h3 class="color-h3">Salles dsiponibles</h3>`;
   for (let i = 0; i < data.SallesDispo.length; i++) {
     list.innerHTML += `<div class="inline">
     <h4>${data.SallesDispo[i].id}</h4> 

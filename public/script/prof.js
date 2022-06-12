@@ -35,16 +35,16 @@ booking.addEventListener("click", () => {
   location.replace("/booking");
 });
 
-// window.onload = () => {
-//   // if (!sessionStorage.user) {
-//   //   location.replace("/login");
-//   // } else {
-//   //   const nameprof = ourUser.name;
-//     if (ourUser != null) {
-//       updateProfilename(nameprof);
-//     }
-//   }
-// };
+window.onload = () => {
+  if (!sessionStorage.user) {
+    location.replace("/login");
+  } else {
+    const nameprof = ourUser.name;
+    if (ourUser != null) {
+      updateProfilename(nameprof);
+    }
+  }
+};
 
 //
 const mondayv1m = document.querySelector(".mondayv1m");
