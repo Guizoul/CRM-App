@@ -9,7 +9,7 @@ navelement.innerHTML = `
 <a href="http://localhost:1337/">Accueil</a>
 </li>
 <li>
-<a href="http://localhost:1337/">Liste des reservation</a>
+<a href="javascript:void(0);" class="bookingList">Mes réservations</a>
 </li>
 <li>
 <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
@@ -80,6 +80,7 @@ let ourUser = JSON.parse(sessionStorage.user || null);
 
 const logout = document.querySelector(".logout");
 const namePorfil = document.querySelector(".username");
+const bookingList=document.querySelector(".bookingList")
 
 function updateProfilename(name) {
   console.log(namePorfil);
@@ -91,6 +92,10 @@ logout.addEventListener("click", () => {
     sessionStorage.clear();
     location.replace("/login");
   }
+});
+
+bookingList.addEventListener("click", ()=>{
+  location.replace("/prof/List")
 });
 
 // window.onload = () => {

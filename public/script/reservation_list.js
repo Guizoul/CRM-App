@@ -34,3 +34,5 @@ navelement.innerHTML = `
 </li>
 
 `;
+
+const modifier=document.querySelector(".modifier");

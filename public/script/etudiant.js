@@ -115,15 +115,15 @@ var emploiVacations = {
   tuesdayv2a: tuesdayv2a,
 };
 
-window.onload = () => {
-  if (!sessionStorage.user) {
-    location.replace("/login");
-  } else {
-    const nameetu = ourUser.name;
+// window.onload = () => {
+//   if (!sessionStorage.user) {
+//     location.replace("/login");
+//   } else {
+//     const nameetu = ourUser.name;
 
-    if (nameetu != null) {
-      console.log(nameetu);
-      updateProfilename(nameetu);
-    }
-  }
-};
+//     if (nameetu != null) {
+//       console.log(nameetu);
+//       updateProfilename(nameetu);
+//     }
+//   }
+// };

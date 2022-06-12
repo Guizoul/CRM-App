@@ -7,7 +7,7 @@ const navelement = document.querySelector(".nav-list");
 
 navelement.innerHTML = `
 <li>
-          <a href="http://localhost:1337/">Accueil</a>
+          <a href="javascript:void(0);" class="home">Accueil</a>
         </li>
         <li>
           <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
@@ -51,8 +51,9 @@ navelement.innerHTML = `
 
 `;
 
-const bookingplace=document.querySelector(".booking")
+const bookingplace=document.querySelector(".booking");
 const contactplace = document.querySelector(".contact");
+const homeplace=document.querySelector(".home");
 
 contactplace.addEventListener("click", () => {
   location.replace("/admin/contact");
@@ -60,6 +61,10 @@ contactplace.addEventListener("click", () => {
 
 bookingplace.addEventListener("click", () => {
   location.replace("/admin/booking");
+});
+
+homeplace.addEventListener("click", ()=>{
+  location.replace("/")
 });
 
 const socket = io();

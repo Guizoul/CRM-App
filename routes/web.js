@@ -157,6 +157,11 @@ const intAllRoutes = (app, dirname) => {
     res.sendFile(dirname + "/public/login.html");
   });
 
+  //bookingList
+app.get("/prof/List", (req,res)=>{
+  res.sendFile(dirname+"/public/reservation_list.html")
+})
+
   //home
   app.get("/", (req, res) => {
     res.sendFile(dirname + "/public/home.html");

@@ -13,7 +13,7 @@ navelement.innerHTML = `
  <img class="user" src="../public/imgs/user.png" srcset=""/>
   <ul class="navbar-dropdown">
     <li>
-      <button class="login">login</button>
+      <button class="login">Se connecter</button>
     </li>
 `;
 
