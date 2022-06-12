@@ -40,9 +40,9 @@ exitbtn.addEventListener("click", function () {
 //
 btn.addEventListener("click", () => {
   if (!ValidateEmail(email)) {
-    showMyAlert("please enter an email");
+    showMyAlert("Veuillez entrer un email");
   } else if (password.value.length < 8) {
-    showMyAlert("please enter a validz password should be 8 letters");
+    showMyAlert("Vueillez entrer un mot de passe valide (8 lettres minimum)");
   } else {
     sendData("/login", {
       email: email.value,

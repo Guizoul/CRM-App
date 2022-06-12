@@ -120,11 +120,11 @@ export function createmploi() {
   emploi.innerHTML += `<table  cellpadding="0" cellspacing="0">
 <tr class="days">
   <th></th>
-  <th>Monday</th>
-  <th>Tuesday</th>
-  <th>Wednesday</th>
-  <th>Thursday</th>
-  <th>Friday</th>
+  <th>Lundi</th>
+  <th>Mardi</th>
+  <th>Mercredi</th>
+  <th>Jeudi</th>
+  <th>Vendredi</th>
 </tr>
 <tr>
   <td class="time">9.00 - 10:30</td>

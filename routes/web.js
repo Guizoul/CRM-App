@@ -20,11 +20,35 @@ const intAllRoutes = (app, dirname) => {
     await dbCheckUsers("admins", email, password, res);
     await dbCheckUsers("etudiants", email, password, res);
   });
-
+//prof booking
   app.post("/reservation", async (req, res) => {
     let { date, heure_debut, typeSalle } = req.body;
     console.log(typeSalle);
     const QList = `select id from salles where reservee=false and type="${typeSalle}" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}");
+    `;
+    const result = await mydatabse.query(QList);
+    console.log(result);
+    return res.json({ SallesDispo: result });
+  });
+
+  //admin booking
+  app.get("/admin/booking", (req, res) => {
+    res.sendFile(dirname + "/public/reservation_admin.html");
+  });
+
+  app.post("/admin/booking", async (req, res) => {
+    let {
+      date,
+      heure_debut,
+      heure_fin,
+      fois,
+      salle,
+      cours,
+      filiere,
+      niveau,
+      bouton,
+    } = req.body;
+    const QList = `SELECT salles.id FROM salles where reservee=false not in (select reservation.idsalle as id from reservation where Dateres="2022-06-10" and heuredebut="10:00:00") ;
     `;
     const result = await mydatabse.query(QList);
     console.log(result);
@@ -149,6 +173,11 @@ const intAllRoutes = (app, dirname) => {
     res.sendFile(dirname + "/public/login.html");
   });
 
+  //bookingList
+app.get("/prof/List", (req,res)=>{
+  res.sendFile(dirname+"/public/reservation_list.html")
+})
+
   //home
   app.get("/", (req, res) => {
     res.sendFile(dirname + "/public/home.html");
@@ -221,6 +250,11 @@ const intAllRoutes = (app, dirname) => {
   app.get("/booking", (req, res) => {
     res.sendFile(dirname + "/public/reservation.html");
   });
+
+  app.get("/admin/booking", (req, res) => {
+    res.sendFile(dirname + "/public/reservation_admin.html");
+  });
+
   /// reserve the classe in db
   app.put("/reservation", async (req, res) => {
     const {
