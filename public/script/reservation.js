@@ -77,6 +77,7 @@ bouton.addEventListener("click", () => {
   filiere = document.getElementById("filiere").value;
   niveau = document.getElementById("niveau").value;
   date = document.getElementById("date").value;
+  console.log(heure_debut);
   if (
     !fois ||
     !date ||
@@ -160,7 +161,7 @@ const displayClassrooms = (data) => {
 
 const logout = document.querySelector(".logout");
 const namePorfil = document.querySelector(".username");
-const bookingList=document.querySelector(".bookingList")
+const bookingList = document.querySelector(".bookingList");
 
 function updateProfilename(name) {
   console.log(namePorfil);
@@ -174,8 +175,8 @@ logout.addEventListener("click", () => {
   }
 });
 
-bookingList.addEventListener("click", ()=>{
-  location.replace("/prof/List")
+bookingList.addEventListener("click", () => {
+  location.replace("/prof/Mesreservations");
 });
 
 // window.onload = () => {
