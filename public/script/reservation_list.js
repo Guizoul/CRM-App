@@ -6,7 +6,10 @@ createFooter();
 const navelement = document.querySelector(".nav-list");
 navelement.innerHTML = `
 <li>
-<a href="http://localhost:1337/">Accueil</a>
+<a href="javascript:void(0);" class="home">Accueil</a>
+</li>
+<li>
+<a href="javascript:void(0);" class="booking">Réservation</a>
 </li>
 <li>
 <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
@@ -29,10 +32,15 @@ navelement.innerHTML = `
   <li class="username">
   </li>
   <li>
-    <button class ="logout">logout</button>
+    <button class ="logout">Se déconnecter</button>
   </li>
 </li>
 
 `;
 
 const modifier=document.querySelector(".modifier");
+const booking=document.querySelector(".booking");
+
+booking.addEventListener("click", ()=>{
+  location.replace("/booking")
+});
