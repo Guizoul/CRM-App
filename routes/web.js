@@ -114,8 +114,6 @@ const intAllRoutes = (app, dirname) => {
         const executeQuery = await mydatabse.query(sql5);
         inserted = true;
       }
-    } else {
-      return res.json({ error: "some field(s) wrong!!!" });
     }
     if (inserted) {
       return res.json({

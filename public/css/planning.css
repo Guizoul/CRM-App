@@ -205,6 +205,12 @@ select option {
   color: #444;
   font-size: 15px;
 }
+
+input.debut,
+input.fin {
+  font-size: 15px;
+}
+
 .col-third:last-of-type {
   padding-right: 0;
 }
@@ -340,4 +346,8 @@ button:hover {
 .item {
   font-size: 14px;
   border-bottom: solid #145cc0 1.5px;
+}
+
+input {
+  font-size: 15px;
 }
