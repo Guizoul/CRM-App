@@ -167,7 +167,7 @@ select option {
   /* max-width: 80%; */
   margin: 0 10em;
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 1.5em;
 }
 
@@ -278,9 +278,9 @@ button:hover {
 }
 
 .searchBtn {
-  font-size: 32px;
+  font-size: 28px;
   width: 50px;
-  height: 48px;
+  height: 36px;
   padding: 2px;
   border: #145cc0 solid 1px;
   border-radius: 3px;
@@ -301,9 +301,43 @@ button:hover {
 
 .search-group input {
   font-size: 14px;
+  padding: 7px 14px;
 }
 
 .searchBtn:hover {
   cursor: pointer;
   background-color: #4275bb;
+}
+
+.search-container {
+  padding: 3rem 2rem;
+}
+
+.items-top-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-y: scroll;
+  border-left: #145cc0 solid 2px;
+}
+
+.items-container {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  justify-content: center;
+  /* align-items: center; */
+  padding-bottom: 20px;
+  border-bottom: solid #145cc0 2px;
+}
+
+.table-header {
+  gap: 30px;
+  font-weight: 600;
+}
+
+.item {
+  font-size: 14px;
+  border-bottom: solid #145cc0 1.5px;
 }
