@@ -77,6 +77,7 @@ bouton.addEventListener("click", () => {
   filiere = document.getElementById("filiere").value;
   niveau = document.getElementById("niveau").value;
   date = document.getElementById("date").value;
+  console.log(heure_debut);
   if (
     !fois ||
     !date ||
@@ -117,10 +118,7 @@ const displayClassrooms = (data) => {
   list.scrollIntoView({ behavior: "smooth" });
   list.innerHTML = `<h3 class="color-h3">Salles dsiponibles</h3>`;
   for (let i = 0; i < data.SallesDispo.length; i++) {
-    list.innerHTML += `<div class="inline">
-    <h4>${data.SallesDispo[i].id}</h4> 
-    <button class="reserver">Réserver!</button>
-    </div>`;
+    list.innerHTML += `<div class="inline"><h4>${data.SallesDispo[i].id}</h4>  <button class="reserver">Réserver!</button></div>`;
   }
   // reservation events
   const reserver = document.querySelectorAll(".reserver");
@@ -163,7 +161,7 @@ const displayClassrooms = (data) => {
 
 const logout = document.querySelector(".logout");
 const namePorfil = document.querySelector(".username");
-const bookingList=document.querySelector(".bookingList")
+const bookingList = document.querySelector(".bookingList");
 
 function updateProfilename(name) {
   console.log(namePorfil);
@@ -177,8 +175,8 @@ logout.addEventListener("click", () => {
   }
 });
 
-bookingList.addEventListener("click", ()=>{
-  location.replace("/prof/List")
+bookingList.addEventListener("click", () => {
+  location.replace("/prof/Mesreservations");
 });
 
 // window.onload = () => {

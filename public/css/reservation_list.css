@@ -1,47 +1,40 @@
 /* nav ul{height:200px; width:50%;}
 nav ul{overflow:hidden; overflow-y:scroll;} */
 
-
-  .container {
-    max-width: 43em;
-    padding: 3em 5em;
-    display: flex;
-    margin: 6em auto;
-    background-color: #fff;
-    border-radius: 4.2px;
-    box-shadow: 0px 3px 10px -2px rgb(0 0 0 / 20%);
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: flex-start;
-    
+.container {
+  max-width: 43em;
+  padding: 3em 5em;
+  display: flex;
+  margin: 6em auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgb(0 0 0 / 20%);
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
 }
-  .room{
-      background-color: blue;
-      justify-content: space-between;
-      /* display: flex; */
-      height: auto;
-      width: 80%;
-      display: inline-flex;
-  }
-
-  li{
-    list-style-type: none;
-  }
-
-  .btn{
-    position: absolute;
-    
+.room {
+  background-color: blue;
+  justify-content: space-between;
+  /* display: flex; */
+  height: auto;
+  width: 80%;
+  display: inline-flex;
 }
 
-.scroll-container{
+li {
+  list-style-type: none;
+}
+
+.scroll-container {
   overflow-y: scroll;
 }
 
-.max{
+.max {
   max-height: 500px;
 }
 
-.inline{
+.inline {
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -50,17 +43,18 @@ nav ul{overflow:hidden; overflow-y:scroll;} */
   width: 100%;
   border-radius: 15px;
   margin-top: 10px;
+  justify-content: space-around;
 }
-h2{
+h2 {
   text-align: center;
-  
 }
-.modifier{
-  position: relative;
-  left: 403px;
+.btn {
+  cursor: pointer;
+  background-color: #eee;
+  border: white;
+  padding: 10px;
+  border-radius: 20px;
 }
-
-.annuler{
-  position: relative;
-  left: 419px;
+.btn:hover {
+  background-color: rgb(135, 223, 255);
 }

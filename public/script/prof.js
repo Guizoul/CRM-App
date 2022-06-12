@@ -32,7 +32,7 @@ fetch("/emploi", {
 //booking section
 const booking = document.querySelector(".booking");
 booking.addEventListener("click", () => {
-  location.replace("/booking");
+  location.replace("/prof/reservation");
 });
 
 window.onload = () => {

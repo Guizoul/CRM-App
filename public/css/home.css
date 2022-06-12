@@ -155,7 +155,68 @@ h2 {
 .loader {
   position: fixed;
   width: 247px;
-  top: 50%;
-  left: 50%;
+  top: 40%;
+  left: 40%;
   display: none;
+}
+
+.alert {
+  font-family: "Roboto", sans-serif;
+  width: 45%;
+  padding: 10px 20px;
+  background-color: #fa4033b9;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: larger;
+  position: fixed;
+  left: 28%;
+  top: 40%;
+  z-index: 9;
+  text-align: center;
+  display: none;
+}
+/* .loader {
+  position: fixed;
+  width: 247px;
+  top: 56%;
+  left: 43%;
+  z-index: 9;
+} */
+
+.alert button {
+  padding: 1px;
+  margin-bottom: -5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert button {
+  padding: 1px;
+  margin-bottom: -5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* cursor: pointer; */
+  font-size: 20px;
+  color: #fff;
+  background-color: #1755a7;
+  border: 1px solid #1252a5;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+.alert button:hover {
+  cursor: pointer;
+  background-color: #396aaadc;
+  border: #3564a1dc 1px solid;
 }
