@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../public/css/emploi_form.css" />
+    <link rel="stylesheet" href="../public/css/planning.css" />
     <link rel="icon" href="../public/imgs/inptwhite.png" />
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 
@@ -96,13 +96,29 @@
           </div>
         </form>
       </div>
-      <div class="container">
+      <div class="container search-container">
         <div class="input-group search-group">
-          <span class="iconify" data-icon="ant-design:search-outlined"></span>
-          <input class="search" type="text" placeholder="rechercher prof ..." />
+          <button class="searchBtn">
+            <span class="iconify" data-icon="ant-design:search-outlined"></span>
+          </button>
+          <input
+            class="search"
+            type="text"
+            placeholder="rechercher emploi prof ..."
+          />
+        </div>
+        <div class="items-top-container">
+          <div class="items-container table-header">
+            <span class="item jour">Jour</span>
+            <span class="item debut">Debut</span>
+            <span class="item fin">Fin</span>
+            <span class="item salle">Salle</span>
+            <span class="item classe">Classe</span>
+            <span class="item matiere">matiere</span>
+          </div>
         </div>
       </div>
     </div>
-    <script src="../public/script/setPlanning.js" type="module"></script>
+    <script src="../public/script/planning.js" type="module"></script>
   </body>
 </html>

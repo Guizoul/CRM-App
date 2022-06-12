@@ -160,17 +160,16 @@ select option {
   transition: all 0.35s ease-in-out;
 }
 .container {
-    max-width: 60em;
-    padding: 3em 5em;
-    display: flex;
-    margin: 6em auto;
-    background-color: #fff;
-    border-radius: 4.2px;
-    box-shadow: 0px 3px 10px -2px rgb(0 0 0 / 20%);
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: flex-start;
-    
+  max-width: 60em;
+  padding: 3em 5em;
+  display: flex;
+  margin: 6em auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgb(0 0 0 / 20%);
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .row {
   zoom: 1;
@@ -269,38 +268,69 @@ button:hover {
   display: none;
 }
 
-/* {
-    width: 90%;
-    border-radius:20px;
-    background-color: blue;
-    /* display:flex; 
-    justify-content:space-between;
-    list-style-type: none;
- */
-.inline{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    background-color: rgb(159, 194, 220);
-    height: 60px;
-    width: 100%;
-    border-radius: 15px;
-    margin-top: 10px;
+.inline {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: rgb(159, 194, 220);
+  height: 60px;
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
-.cont{
-    padding: 5px;
-    background-color: blue;
+.cont {
+  padding: 5px;
+  background-color: blue;
 }
-.reserver{
-    position: relative;
-    left: 255px;
-}
-
-.scroll-container{
-    overflow-y: scroll;
+.reserver {
+  position: relative;
+  left: 255px;
 }
 
-.max{
-    max-height: 300px;
+.scroll-container {
+  overflow-y: scroll;
+}
+
+.max {
+  max-height: 300px;
+}
+.alert {
+  font-family: "Roboto", sans-serif;
+  width: 45%;
+  padding: 10px 20px;
+  background-color: #fa4033b9;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: larger;
+
+  position: fixed;
+  left: 28%;
+  top: 65%;
+  z-index: 9;
+  text-align: center;
+}
+.loader {
+  position: fixed;
+  width: 247px;
+  top: 56%;
+  left: 43%;
+  z-index: 9;
+}
+
+.alert button {
+  padding: 1px;
+  margin-bottom: -5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
 }

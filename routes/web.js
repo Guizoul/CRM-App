@@ -2,7 +2,6 @@ const schedule = require("node-schedule");
 const { Database, dbCheckUsers } = require("../public/script/Dbservices.js");
 const mydatabse = new Database();
 const jwt = require("jsonwebtoken");
-const { TIME } = require("sequelize");
 
 const authenticateToken = require("../public/middleware/authJWT.js").default;
 
@@ -23,18 +22,9 @@ const intAllRoutes = (app, dirname) => {
   });
 //prof booking
   app.post("/reservation", async (req, res) => {
-    let {
-      date,
-      heure_debut,
-      heure_fin,
-      fois,
-      salle,
-      cours,
-      filiere,
-      niveau,
-      bouton,
-    } = req.body;
-    const QList = `SELECT salles.id FROM salles where reservee=false not in (select reservation.idsalle as id from reservation where Dateres="2022-06-10" and heuredebut="10:00:00") ;
+    let { date, heure_debut, typeSalle } = req.body;
+    console.log(typeSalle);
+    const QList = `select id from salles where reservee=false and type="${typeSalle}" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}");
     `;
     const result = await mydatabse.query(QList);
     console.log(result);
@@ -95,7 +85,7 @@ const intAllRoutes = (app, dirname) => {
     });
   });
   app.get("/admin/setPlanning", (req, res) => {
-    res.sendFile(dirname + "/public/emploi_form.html");
+    res.sendFile(dirname + "/public/planning.html");
   });
   app.post("/admin/setPlanning", async (req, res) => {
     console.log("setting emploi...");
@@ -118,12 +108,12 @@ const intAllRoutes = (app, dirname) => {
       const result2 = await mydatabse.query(sql2);
       const result3 = await mydatabse.query(sql3);
       const result4 = await mydatabse.query(sql4);
-
+      console.log(result1);
       if (
-        result1[0] != undefined &&
-        result2[0] != undefined &&
-        result3[0] != undefined &&
-        result4[0] != undefined
+        result1.length != 0 &&
+        result2.length != 0 &&
+        result3.length != 0 &&
+        result4.length != 0
       ) {
         // extract results values if they're not null
         const idProf = result1[0].id;
@@ -139,16 +129,42 @@ const intAllRoutes = (app, dirname) => {
         const executeQuery = await mydatabse.query(sql5);
         inserted = true;
       }
-    } else {
-      res.json({ error: "some field(s) wrong!!!" });
     }
     if (inserted) {
-      res.json({
+      return res.json({
         success: "ajouté à emploi avec succès",
       });
     } else {
       return res.json({
         fail: "échec de l'insertion dans emploi vérifier les valeurs saisies",
+      });
+    }
+  });
+
+  app.post("/admin/setPlanning/getProfPlanning", async (req, res) => {
+    const [firstName, lastName] = req.body.data.split(" ");
+    const sql1 = `select id from professeurs where firstName='${firstName}' and lastName='${lastName}'`;
+    const result1 = await mydatabse.query(sql1);
+    if (result1.length != 0) {
+      const requetSql = `select jour,debut,fin,matiere.nommatiere,classe.niveau,filiere.nom,idsalle from
+      (emploi inner join classe on classe.idclasse=emploi.idclasse
+       inner join matiere on matiere.idmatiere =emploi.idmatiere) inner join filiere on classe.nomfiliere =filiere.nom
+       where idprof=${result1[0].id};`;
+
+      const result = await mydatabse.query(requetSql);
+      console.log(result);
+      if (result.length != 0) {
+        return res.json({
+          searchResult: result,
+        });
+      } else {
+        return res.json({
+          noResult: "pas de resultat",
+        });
+      }
+    } else {
+      return res.json({
+        error: "aucun prof avec ce nom essayez le format (prenom nom)",
       });
     }
   });
@@ -240,31 +256,43 @@ app.get("/prof/List", (req,res)=>{
   });
 
   /// reserve the classe in db
-  app.put("/prof", (req, res) => {
-    const { idclasse, dateRes } = req.body;
-    console.log(idclasse, dateRes);
-    const dateBeginingOfReservation = new Date(dateRes);
+  app.put("/reservation", async (req, res) => {
+    const {
+      date,
+      heure_debut,
+      heure_fin,
+      salle,
+      filiere,
+      niveau,
+      idprof,
+      matiere,
+    } = req.body;
 
-    // date end reservation after 3hours of the reservation date ;
-    let dateEndReservaetion = new Date(dateRes);
-    dateEndReservaetion.setHours(dateEndReservaetion.getHours() + 4);
-    // dateEndReservaetion.setDate()
-    console.log(dateEndReservaetion);
+    let ine = niveau.substr(niveau.length - 1);
 
-    schedule.scheduleJob(dateBeginingOfReservation, async () => {
+    const sqlReservationTable = `insert into reservation values("${salle}","${date}","${heure_debut}:00","${heure_fin}:00","${filiere}",${ine},${idprof},"${matiere}");`;
+    let datereserver = new Date(date + " " + heure_debut);
+    datereserver.setHours(datereserver.getHours() + 1);
+    let datetimefinreserve = new Date(date + " " + heure_fin);
+    datetimefinreserve.setHours(datetimefinreserve.getHours() + 1);
+    console.log(req.body);
+    await mydatabse.query(sqlReservationTable);
+
+    schedule.scheduleJob(datereserver, async () => {
       console.log("ready to exucute in db ");
       await mydatabse.query(
-        `UPDATE classe set reservee=true where idclasse="${idclasse}"`
+        `UPDATE salles set reservee=true where idclasse="${salle}"`
       );
     });
 
     //end of reservation
-    schedule.scheduleJob(dateEndReservaetion, async () => {
+    schedule.scheduleJob(datetimefinreserve, async () => {
       console.log("ready to exucute in db ");
       await mydatabse.query(
-        `UPDATE classe set reservee=true where idclasse="${idclasse}"`
+        `UPDATE salles set reservee=true where idclasse="${salle}"`
       );
     });
+    return res.json({ booked: "la salle à était bien réservée" });
   });
 };
 
