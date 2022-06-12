@@ -22,18 +22,9 @@ const intAllRoutes = (app, dirname) => {
   });
 
   app.post("/reservation", async (req, res) => {
-    let {
-      date,
-      heure_debut,
-      heure_fin,
-      fois,
-      salle,
-      cours,
-      filiere,
-      niveau,
-      bouton,
-    } = req.body;
-    const QList = `select id from salles where reservee=false and type="salle cours" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}");
+    let { date, heure_debut, typeSalle } = req.body;
+    console.log(typeSalle);
+    const QList = `select id from salles where reservee=false and type="${typeSalle}" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}");
     `;
     const result = await mydatabse.query(QList);
     console.log(result);
