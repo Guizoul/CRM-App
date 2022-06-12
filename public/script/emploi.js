@@ -128,20 +128,14 @@ export function createmploi() {
 </tr>
 <tr>
   <td class="time">9.00 - 10:30</td>
-  <td
-    class="mondayv1m"
-    data-tooltip=""> 
-  </td>
+  <td class="mondayv1m cs335" data-tooltip=""></td>
   <td class="cs335 tuesdayv1m" data-tooltip=""></td>
   <td class="cs335 wednsdayv1m" data-tooltip=""></td>
   <td class="cs335 thursdayv1m"data-tooltip=""></td>
   <td class="cs335 fridayv1m"data-tooltip=""></td>
 </tr>
   <td class="time">11.00 - 12:30</td>
-  <td
-  class="mondayv2m"
-  data-tooltip=""> 
-</td>
+  <td class="mondayv2m cs335" data-tooltip=""></td>
 <td class="cs335 tuesdayv2m" data-tooltip=""></td>
 <td class="cs335 wednsdayv2m" data-tooltip=""></td>
 <td class="cs335 thursdayv2m" data-tooltip=""></td>
@@ -159,14 +153,11 @@ export function createmploi() {
 
 <tr>
   <td class="time">16.00 - 17:30</td>
-  <td
-  class="cs335 mondayv2a"
-  data-tooltip="">
-</td>
-<td class="cs335 tuesdayv2a" data-tooltip=""></td>
-<td class="cs335 wednsdayv2a" data-tooltip=""></td>
-<td class="cs335 thursdayv2a" data-tooltip=""></td>
-<td class="cs335 fridayv2a" data-tooltip=""></td>
+  <td class="cs335 mondayv2a cs335" data-tooltip=""></td>
+  <td class="cs335 tuesdayv2a" data-tooltip=""></td>
+  <td class="cs335 wednsdayv2a" data-tooltip=""></td>
+  <td class="cs335 thursdayv2a" data-tooltip=""></td>
+  <td class="cs335 fridayv2a" data-tooltip=""></td>
 </tr>
 </table>`;
 }

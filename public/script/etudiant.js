@@ -67,32 +67,33 @@ fetch("/etudiant", {
   .then((res) => res.json())
   .then((data) => {
     setPlanning(data, emploiVacations, "etudiant");
+
+    /////////////////////////////////////////////////
+    ////////////////////////////////////////////////
+
     console.log("hey hey");
-    console.log(data);
+    // console.log(data);
     // console.log(parseInt(salleContainer[0].dataset.index));
     // for (let i = 0; i < salleContainer.length; i++) {
     //   console.log(salleContainer[i].dataset.index);
     // }
     d = data.planning;
-    console.log(d);
+    // console.log(d);
     let clickedSalle = 88;
-    console.log(salleContainer[0].innerHTML);
+    // console.log(salleContainer[0].innerHTML);
     for (let i = 0; i < salleContainer.length; i++) {
       salleContainer[i].addEventListener("click", () => {
         showAlert();
+        const currentId = salleContainer[i].innerHTML.split(" ").pop();
         for (let j = 0; j < data.planning.length; j++) {
-          const clicked = salleContainer[j].innerHTML.split(" ");
-          console.log(clicked);
-          if (d[j].idsalle === clicked) {
-            clickedSalle = clicked;
+          if (d[j].idsalle === currentId) {
+            clickedSalle = currentId;
           }
         }
         console.log(clickedSalle);
-        // console.log(data.planning[salleContainer[i].dataset.index]);
       });
     }
   });
-console.log(d);
 const mondayv1m = document.querySelector(".mondayv1m");
 const mondayv2m = document.querySelector(".mondayv2m");
 const mondayv1a = document.querySelector(".mondayv1a");
@@ -179,7 +180,6 @@ for (let i = 0; i < salleContainer.length; i++) {
 //////// HANDLE ALERTS AND LOADER
 let alertbox = document.querySelector(".alert");
 const exitbtn = document.querySelector(".closebtn");
-alertbox.classList.remove("success");
 const loader = document.querySelector(".loader");
 
 const showAlert = function (msg) {
