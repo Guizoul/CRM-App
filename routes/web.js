@@ -61,7 +61,7 @@ const intAllRoutes = (app, dirname) => {
     });
   });
   app.get("/admin/setPlanning", (req, res) => {
-    res.sendFile(dirname + "/public/emploi_form.html");
+    res.sendFile(dirname + "/public/planning.html");
   });
   app.post("/admin/setPlanning", async (req, res) => {
     console.log("setting emploi...");
@@ -105,8 +105,6 @@ const intAllRoutes = (app, dirname) => {
         const executeQuery = await mydatabse.query(sql5);
         inserted = true;
       }
-    } else {
-      return res.json({ error: "some field(s) wrong!!!" });
     }
     if (inserted) {
       return res.json({
@@ -115,6 +113,34 @@ const intAllRoutes = (app, dirname) => {
     } else {
       return res.json({
         fail: "échec de l'insertion dans emploi vérifier les valeurs saisies",
+      });
+    }
+  });
+
+  app.post("/admin/setPlanning/getProfPlanning", async (req, res) => {
+    const [firstName, lastName] = req.body.data.split(" ");
+    const sql1 = `select id from professeurs where firstName='${firstName}' and lastName='${lastName}'`;
+    const result1 = await mydatabse.query(sql1);
+    if (result1.length != 0) {
+      const requetSql = `select jour,debut,fin,matiere.nommatiere,classe.niveau,filiere.nom,idsalle from
+      (emploi inner join classe on classe.idclasse=emploi.idclasse
+       inner join matiere on matiere.idmatiere =emploi.idmatiere) inner join filiere on classe.nomfiliere =filiere.nom
+       where idprof=${result1[0].id};`;
+
+      const result = await mydatabse.query(requetSql);
+      console.log(result);
+      if (result.length != 0) {
+        return res.json({
+          searchResult: result,
+        });
+      } else {
+        return res.json({
+          noResult: "pas de resultat",
+        });
+      }
+    } else {
+      return res.json({
+        error: "aucun prof avec ce nom essayez le format (prenom nom)",
       });
     }
   });
