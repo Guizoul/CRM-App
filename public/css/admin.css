@@ -33,3 +33,54 @@ h2 {
   font-family: Verdana;
   text-align: center;
 }
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #1e56a0d5;
+  border: #1e56a0d2 1px solid;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  justify-items: center;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.btn {
+  font-size: 20px;
+  color: #fff;
+  margin: 25px auto;
+  background-color: #1e56a0;
+  border: 1px solid #1e56a0;
+  border-radius: 5px;
+  padding: 8px 16px;
+  transition: all 0.3s;
+  justify-self: start;
+}
+
+.salles-dispo,
+.ccs-dispo,
+.amphis-dispo,
+.salles-occupe,
+.ccs-occupe,
+.amphis-occupe {
+  font-size: 38px;
+}
+
+.loader {
+  position: fixed;
+  width: 247px;
+  top: 35%;
+  left: 43%;
+}
+
+.hidden {
+  display: none;
+}

@@ -14,70 +14,77 @@
     />
     <link rel="stylesheet" href="/public/css/navbar.css" />
     <link rel="stylesheet" href="/public/css/admin.css" />
-    <title>AMDMIN PAGE</title>
+    <title>ADMIN PAGE</title>
   </head>
   <header class="header"></header>
   <body>
+    <img class="loader hidden" src="../public/imgs/R.gif" alt="" srcset="" />
     <div class="navs"></div>
 
     <h2>Tableau de bord</h2>
-    <form action="/action_page.php">
-      <label for="cars">
-        <span class="text1">Domaine de visibilité</span>:</label
-      >
-      <input
-        type="date"
-        id="start"
-        name="trip-start"
-        value="2022-05-22"
-        min="2022-05-22"
-        max="2022-12-31"
-      />
-      <br /><br />
-    </form>
-    <form action="/action_page.php">
-      <label for="cars"><span class="text1">Chioisir la vacation</span>:</label>
-      <select name="cars" id="cars">
-        <option value="volvo">9:00 à 10:30</option>
-        <option value="saab">11:00 à 12:30</option>
-        <option value="opel">14:00 à 15:30</option>
-        <option value="audi">16:00 à 17:30</option>
-      </select>
-    </form>
+    <div class="container">
+      <div class="form-container">
+        <form>
+          <label> <span class="text1">Domaine de visibilité</span>:</label>
+          <input
+            class="date"
+            type="date"
+            id="start"
+            name="trip-start"
+            value="2022-06-10"
+            min="2022-05-22"
+            max="2022-12-31"
+          />
+          <br /><br />
+        </form>
+        <form>
+          <label for="cars"
+            ><span class="text1">Chioisir la vacation</span>:</label
+          >
+          <select name="time" class="time">
+            <option class="time-item" value="09:00 10:30">9:00 à 10:30</option>
+            <option class="time-item" value="11:00 12:30">11:00 à 12:30</option>
+            <option class="time-item" value="14:00 15:30">14:00 à 15:30</option>
+            <option class="time-item" value="16:00 17:30">16:00 à 17:30</option>
+          </select>
+        </form>
+      </div>
+      <button type="button" class="btn">visualiser</button>
+    </div>
 
     <table style="width: 100%">
       <tr>
         <th>
-          <span style="color: #000000">Salles disponibles </span><br />
+          <span style="color: #222">Salles disponibles </span><br />
           <br />
-          <span style="color: black">38</span>
+          <span class="salles-dispo" style="color: #222">38</span>
         </th>
         <th>
-          <span style="color: #000000">Amphis disponibles</span> <br />
+          <span style="color: #222">Amphis disponibles</span> <br />
           <br />
-          <span style="color: black">8</span>
+          <span class="amphis-dispo" style="color: #222">8</span>
         </th>
         <th>
-          <span style="color: #000000">CCs disponibles</span><br /><br />
-          <span style="color: black">3</span>
+          <span style="color: #222">CCs disponibles</span><br /><br />
+          <span class="ccs-dispo" style="color: #222">3</span>
         </th>
       </tr>
 
       <tr>
         <th>
-          <span style="color: #000000">Salles occupées</span> <br />
+          <span style="color: #222">Salles occupées</span> <br />
           <br />
-          <span style="color: black">23</span>
+          <span class="salles-occupe" style="color: #222">23</span>
         </th>
         <th>
-          <span style="color: #000000">Amphis occupés</span> <br />
+          <span style="color: #222">Amphis occupés</span> <br />
           <br />
-          <span style="color: black">2</span>
+          <span class="amphis-occupe" style="color: #222">2</span>
         </th>
         <th>
-          <span style="color: #000000">CCs occupés</span> <br />
+          <span style="color: #222">CCs occupés</span> <br />
           <br />
-          <span style="color: black">2</span>
+          <span class="ccs-occupe" style="color: #222">2</span>
         </th>
       </tr>
       <i class="fa-solid fa-triangle-exclamation"></i>

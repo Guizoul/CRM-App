@@ -33,9 +33,9 @@ const intAllRoutes = (app, dirname) => {
   });
 
   //admin booking
-  app.get("/admin/reservation", (req, res) => {
-    res.sendFile(dirname + "/public/reservation_admin.html");
-  });
+  // app.get("/admin/booking", (req, res) => {
+  //   res.sendFile(dirname + "/public/reservation_admin.html");
+  // });
 
   //
   app.get("/admin", (req, res) => {
@@ -196,6 +196,25 @@ const intAllRoutes = (app, dirname) => {
     return res.json({ planning: result1 });
   });
 
+  app.post("/etudiant/getSalleLocation", async (req, res) => {
+    console.log(req.body);
+    return res.json({
+      image: req.body.id,
+    });
+    // const sql = `select image from salles where id='${req.body.id}'`;
+    // const result = await mydatabse.query(sql);
+    // console.log(result[0]);
+    // if (result[0].image === null) {
+    //   return res.json({
+    //     noResult: "pas d'image pour cette salle",
+    //   });
+    // } else {
+    //   return res.json({
+    //     image: result[0].image,
+    //   });
+    // }
+  });
+
   //
 
   app.get("/prof", (req, res) => {
@@ -240,19 +259,6 @@ const intAllRoutes = (app, dirname) => {
     return res.json({ booked: result });
   });
 
-  //
-
-  app.get("/listreservation", (req, res) => {
-    res.sendFile(dirname + "/public/sallesreservees.html");
-  });
-  app.post("/reservationList", async (req, res) => {
-    const sql = `select idsalle , Dateres , heuredebut , heurefin ,lastname,firstname,matiere  from reservation inner join professeurs on 
-    professeurs.id =reservation.idprof ;`;
-    const result = await mydatabse.query(sql);
-    console.log(result);
-    return res.json({ booked: result });
-  });
-
   app.delete("/prof/annulerReservation", async (req, res) => {
     const { id, salle, dateRes, heurdebut } = req.body;
     const sql = `DELETE FROM reservation Where idsalle="${salle}" and Dateres="${dateRes}" and idprof=${id} and heuredebut="${heurdebut}" ;`;
@@ -264,6 +270,39 @@ const intAllRoutes = (app, dirname) => {
   // app.get("/admin/booking", (req, res) => {
   //   res.sendFile(dirname + "/public/reservation_admin.html");
   // });
+
+  app.post("/admin/getStats", async (req, res) => {
+    const [heurdebut, heurefin] = req.body.data[1].split(" ");
+    // DISPO
+    const sql = `select id from salles where type='salle cours' and id not in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result = await mydatabse.query(sql);
+    const salleDispo = result.length;
+    const sql1 = `select id from salles where type='salle TP' and id not in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result1 = await mydatabse.query(sql1);
+    const ccsDispo = result1.length;
+    const sql2 = `select id from salles where type='emphi' and id not in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result2 = await mydatabse.query(sql2);
+    const amphiDispo = result2.length;
+
+    // OCCUPE
+    const sql3 = `select id from salles where type='salle cours' and id in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result3 = await mydatabse.query(sql3);
+    const salleOccupe = result3.length;
+    const sql4 = `select id from salles where type='salle TP' and id in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result4 = await mydatabse.query(sql4);
+    const ccsOccupe = result4.length;
+    const sql5 = `select id from salles where type='emphi' and id in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result5 = await mydatabse.query(sql5);
+    const amphiOccupe = result5.length;
+    return res.json({
+      salleDispo,
+      ccsDispo,
+      amphiDispo,
+      salleOccupe,
+      ccsOccupe,
+      amphiOccupe,
+    });
+  });
 
   /// reserve the classe in db
   app.put("/reservation", async (req, res) => {
@@ -291,7 +330,7 @@ const intAllRoutes = (app, dirname) => {
     schedule.scheduleJob(datereserver, async () => {
       console.log("ready to exucute in db ");
       await mydatabse.query(
-        `UPDATE salles set reservee=true where id="${salle}"`
+        `UPDATE salles set reservee=true where idclasse="${salle}"`
       );
     });
 
@@ -299,41 +338,11 @@ const intAllRoutes = (app, dirname) => {
     schedule.scheduleJob(datetimefinreserve, async () => {
       console.log("ready to exucute in db ");
       await mydatabse.query(
-        `UPDATE salles set reservee=true where id="${salle}"`
+        `UPDATE salles set reservee=true where idclasse="${salle}"`
       );
     });
     return res.json({ booked: "la salle à était bien réservée" });
   });
-
-  //
-  app.put("/admin/reservation", async (req, res) => {
-    const { date, heure_debut, heure_fin, salle, idadmin, objectif } = req.body;
-
-    const sqlReservationTable = `insert into reservationadm values("${salle}",${idadmin},"${date}","${heure_debut}","${heure_fin}","${objectif}");`;
-    let datereserver = new Date(date + " " + heure_debut);
-    datereserver.setHours(datereserver.getHours() + 1);
-    let datetimefinreserve = new Date(date + " " + heure_fin);
-    datetimefinreserve.setHours(datetimefinreserve.getHours() + 1);
-    console.log(req.body);
-    await mydatabse.query(sqlReservationTable);
-
-    schedule.scheduleJob(datereserver, async () => {
-      console.log("ready to exucute in db ");
-      await mydatabse.query(
-        `UPDATE salles set reservee=true where id="${salle}"`
-      );
-    });
-
-    //end of reservation
-    schedule.scheduleJob(datetimefinreserve, async () => {
-      console.log("ready to exucute in db ");
-      await mydatabse.query(
-        `UPDATE salles set reservee=true where id="${salle}"`
-      );
-    });
-    return res.json({ booked: "la salle à était bien réservée" });
-  });
-  //
 };
 
 module.exports = intAllRoutes;
