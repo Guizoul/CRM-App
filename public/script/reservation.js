@@ -29,12 +29,13 @@ navelement.innerHTML = `
 <img class="user" src="../public/imgs/user.png" srcset=""
 />
 <ul class="navbar-dropdown">
-  <li class="username">
-  </li>
-  <li>
-    <button class ="logout">Se déconnecter</button>
-  </li>
+<li class="username">
+USERNAME
 </li>
+<li>
+<button class ="logout">se déconnecter</button>
+</li>
+</ul>
 
 `;
 
@@ -160,7 +161,7 @@ const displayClassrooms = (data) => {
 // planning section
 
 const logout = document.querySelector(".logout");
-const namePorfil = document.querySelector(".username");
+
 const bookingList = document.querySelector(".bookingList");
 
 function updateProfilename(name) {
@@ -179,17 +180,17 @@ bookingList.addEventListener("click", () => {
   location.replace("/prof/Mesreservations");
 });
 
-// window.onload = () => {
-//   if (!sessionStorage.user) {
-//     location.replace("/login");
-//   } else {
-//     const nameetu = ourUser.name;
+const namePorfil = document.querySelector(".username");
 
-//     if (nameetu != null) {
-//       console.log(nameetu);
-//       updateProfilename(nameetu);
-//     }
-//   }
-// };
+window.onload = () => {
+  if (!sessionStorage.user) {
+    location.replace("/login");
+  } else {
+    const nameetu = ourUser.name;
 
-const selection = document.getElementById("Repeat");
+    if (nameetu != null) {
+      console.log(nameetu);
+      updateProfilename(nameetu);
+    }
+  }
+};

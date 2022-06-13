@@ -32,9 +32,9 @@ const intAllRoutes = (app, dirname) => {
   });
 
   //admin booking
-  // app.get("/admin/booking", (req, res) => {
-  //   res.sendFile(dirname + "/public/reservation_admin.html");
-  // });
+  app.get("/admin/reservation", (req, res) => {
+    res.sendFile(dirname + "/public/reservation_admin.html");
+  });
 
   app.post("/admin/booking", async (req, res) => {
     let {
@@ -258,6 +258,19 @@ const intAllRoutes = (app, dirname) => {
     return res.json({ booked: result });
   });
 
+  //
+
+  app.get("/listreservation", (req, res) => {
+    res.sendFile(dirname + "/public/sallesreservees.html");
+  });
+  app.post("/reservationList", async (req, res) => {
+    const sql = `select idsalle , Dateres , heuredebut , heurefin ,lastname,firstname,matiere  from reservation inner join professeurs on 
+    professeurs.id =reservation.idprof ;`;
+    const result = await mydatabse.query(sql);
+    console.log(result);
+    return res.json({ booked: result });
+  });
+
   app.delete("/prof/annulerReservation", async (req, res) => {
     const { id, salle, dateRes, heurdebut } = req.body;
     const sql = `DELETE FROM reservation Where idsalle="${salle}" and Dateres="${dateRes}" and idprof=${id} and heuredebut="${heurdebut}" ;`;
@@ -296,7 +309,7 @@ const intAllRoutes = (app, dirname) => {
     schedule.scheduleJob(datereserver, async () => {
       console.log("ready to exucute in db ");
       await mydatabse.query(
-        `UPDATE salles set reservee=true where idclasse="${salle}"`
+        `UPDATE salles set reservee=true where id="${salle}"`
       );
     });
 
@@ -304,11 +317,41 @@ const intAllRoutes = (app, dirname) => {
     schedule.scheduleJob(datetimefinreserve, async () => {
       console.log("ready to exucute in db ");
       await mydatabse.query(
-        `UPDATE salles set reservee=true where idclasse="${salle}"`
+        `UPDATE salles set reservee=true where id="${salle}"`
       );
     });
     return res.json({ booked: "la salle à était bien réservée" });
   });
+
+  //
+  app.put("/admin/reservation", async (req, res) => {
+    const { date, heure_debut, heure_fin, salle, idadmin, objectif } = req.body;
+
+    const sqlReservationTable = `insert into reservationadm values("${salle}",${idadmin},"${date}","${heure_debut}","${heure_fin}","${objectif}");`;
+    let datereserver = new Date(date + " " + heure_debut);
+    datereserver.setHours(datereserver.getHours() + 1);
+    let datetimefinreserve = new Date(date + " " + heure_fin);
+    datetimefinreserve.setHours(datetimefinreserve.getHours() + 1);
+    console.log(req.body);
+    await mydatabse.query(sqlReservationTable);
+
+    schedule.scheduleJob(datereserver, async () => {
+      console.log("ready to exucute in db ");
+      await mydatabse.query(
+        `UPDATE salles set reservee=true where id="${salle}"`
+      );
+    });
+
+    //end of reservation
+    schedule.scheduleJob(datetimefinreserve, async () => {
+      console.log("ready to exucute in db ");
+      await mydatabse.query(
+        `UPDATE salles set reservee=true where id="${salle}"`
+      );
+    });
+    return res.json({ booked: "la salle à était bien réservée" });
+  });
+  //
 };
 
 module.exports = intAllRoutes;

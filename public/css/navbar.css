@@ -18,6 +18,7 @@ body {
 }
 .username {
   text-transform: uppercase;
+  color: black;
 }
 .user {
   height: 30px;

@@ -4,10 +4,6 @@ createNavs();
 createFooter();
 
 const navelement = document.querySelector(".nav-list");
-
-//
-let ourUser = JSON.parse(sessionStorage.user || null);
-
 navelement.innerHTML = `
 <li>
           <a href="javascript:void(0);" class="home">Accueil</a>
@@ -29,9 +25,6 @@ navelement.innerHTML = `
         <li>
           <a href="javascript:void(0);">Calendrier <i class="fa fa-bell-o"></i></a>
           <ul class="navbar-dropdown">
-            <li>
-            <a href="javascript:void(0);" class="trackbooking">Suivre les reservation</a>
-          </li>
             <li>
               <a href="javascript:void(0);" class="booking">Reservation</a>
             </li>
@@ -57,48 +50,51 @@ navelement.innerHTML = `
 
 `;
 
-const bookingplace = document.querySelector(".booking");
-const contactplace = document.querySelector(".contact");
-const homeplace = document.querySelector(".home");
+let ourUser = JSON.parse(sessionStorage.user || null);
 
-const trackreservation = document.querySelector(".trackbooking");
-contactplace.addEventListener("click", () => {
-  location.replace("/admin/contact");
-});
+const booking = document.querySelector(".booking");
 
-trackreservation.addEventListener("click", () => {
-  location.replace("/listreservation");
-});
-
-bookingplace.addEventListener("click", () => {
+booking.addEventListener("click", () => {
   location.replace("/admin/reservation");
 });
 
-homeplace.addEventListener("click", () => {
-  location.replace("/");
-});
+fetch("/reservationList", {
+  method: "post",
+  headers: new Headers({ "Content-Type": "application/json" }),
+})
+  .then((res) => res.json())
+  .then((data) => {
+    bookedTrack(data);
+  });
 
-const socket = io();
+const bookedTrack = (data) => {
+  const table = document.querySelector(".table");
+  console.log(data.booked);
+  for (let i = 0; i < data.booked.length; i++) {
+    let date = data.booked[i].Dateres;
+    date = date.split("T")[0];
+    let year = date.split("-")[0];
+    let month = date.split("-")[1];
+    let day = parseInt(date.split("-")[2]) + 1;
+    date = year + "-" + month + "-" + day;
 
-socket.on("message", (msg) => {
-  console.log(msg);
-});
-
-const emploi_form = document.querySelector(".setPlanning");
-console.log(emploi_form);
-emploi_form.addEventListener("click", () => {
-  location.replace("/admin/setPlanning");
-});
-
-const getStas = () => {
-  fetch("/admin", {
-    method: "post",
-    headers: new Headers({ "Content-Type": "application/json" }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      setStats(data);
-    });
+    table.innerHTML += ` <tr>
+    <td class="salle">${data.booked[i].idsalle}</td>
+    <td class="fulldate">${date} de ${
+      data.booked[i].heuredebut.split(":")[0] +
+      ":" +
+      data.booked[i].heuredebut.split(":")[0]
+    } à ${
+      data.booked[i].heurefin.split(":")[0] +
+      ":" +
+      data.booked[i].heurefin.split(":")[1]
+    }</td>
+    <td classe="prof">${data.booked[i].firstname} ${
+      data.booked[i].lastname
+    }</td>
+    <td class="cour">${data.booked[i].matiere}</td>
+  </tr>`;
+  }
 };
 
 const namePorfil = document.querySelector(".username");
@@ -106,6 +102,7 @@ const namePorfil = document.querySelector(".username");
 function updateProfilename(name) {
   namePorfil.innerHTML = name;
 }
+
 window.onload = () => {
   console.log(ourUser);
   if (!sessionStorage.user) {

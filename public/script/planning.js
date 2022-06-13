@@ -178,3 +178,16 @@ searchBtn.addEventListener("click", async () => {
     }, 300);
   }
 });
+
+window.onload = () => {
+  console.log(ourUser);
+  if (!sessionStorage.user) {
+    location.replace("/login");
+  } else {
+    const nameprof = ourUser.name;
+    if (ourUser != null) {
+      console.log(nameprof);
+      updateProfilename(nameprof);
+    }
+  }
+};
