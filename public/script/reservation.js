@@ -105,6 +105,7 @@ bouton.addEventListener("click", () => {
         heure_debut: heure_debut,
         heure_fin: heure_fin,
         typeSalle: typeSalle,
+        heure_fin: heure_fin,
       }),
     })
       .then((res) => res.json())

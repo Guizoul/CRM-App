@@ -22,10 +22,11 @@ const intAllRoutes = (app, dirname) => {
   });
   //prof booking
   app.post("/reservation", async (req, res) => {
-    let { date, heure_debut, typeSalle } = req.body;
+    let { date, heure_debut, typeSalle, heure_fin } = req.body;
     console.log(typeSalle);
-    const QList = `select id from salles where reservee=false and type="${typeSalle}" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}:00");
-    `;
+
+    const QList = `select id from salles where reservee=false and type="${typeSalle}" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}:00") and id not in (select idsalle from reservation where Dateres='${date}' and '${heure_debut}:00'<reservation.heurefin);`;
+    console.log(QList);
     const result = await mydatabse.query(QList);
     console.log(result);
     return res.json({ SallesDispo: result });
@@ -34,25 +35,6 @@ const intAllRoutes = (app, dirname) => {
   //admin booking
   app.get("/admin/reservation", (req, res) => {
     res.sendFile(dirname + "/public/reservation_admin.html");
-  });
-
-  app.post("/admin/booking", async (req, res) => {
-    let {
-      date,
-      heure_debut,
-      heure_fin,
-      fois,
-      salle,
-      cours,
-      filiere,
-      niveau,
-      bouton,
-    } = req.body;
-    const QList = `SELECT salles.id FROM salles where reservee=false not in (select reservation.idsalle as id from reservation where Dateres="2022-06-10" and heuredebut="10:00:00") ;
-    `;
-    const result = await mydatabse.query(QList);
-    console.log(result);
-    return res.json({ SallesDispo: result });
   });
 
   //
