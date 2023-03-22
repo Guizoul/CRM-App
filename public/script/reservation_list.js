@@ -3,7 +3,6 @@ import { createNavs, createFooter } from "./createnavBar.js";
 createNavs();
 createFooter();
 
-let ourUser = JSON.parse(sessionStorage.user || null);
 const navelement = document.querySelector(".nav-list");
 navelement.innerHTML = `
 <li>
@@ -36,8 +35,19 @@ navelement.innerHTML = `
     <button class ="logout">Se déconnecter</button>
   </li>
 </li>
-
+</ul>
 `;
+
+const home = document.querySelector(".home");
+const book = document.querySelector(".booking");
+book.addEventListener("click", () => {
+  location.replace("/admin/reservations");
+});
+home.addEventListener("click", () => {
+  location.replace("/");
+});
+
+let ourUser = JSON.parse(sessionStorage.user || null);
 
 fetch("/prof/reservationList", {
   method: "post",
@@ -105,5 +115,31 @@ const setList = (data) => {
           });
       }
     });
+  }
+};
+
+const booking = document.querySelector(".booking");
+
+booking.addEventListener("click", () => {
+  location.replace("/prof/reservation");
+});
+
+const namePorfil = document.querySelector(".username");
+
+function updateProfilename(name) {
+  namePorfil.innerHTML = name;
+}
+
+window.onload = () => {
+  console.log(ourUser);
+  if (!sessionStorage.user) {
+    location.replace("/login");
+  } else {
+    const nameprof = ourUser.name;
+    console.log(nameprof);
+    if (ourUser != null) {
+      console.log(nameprof);
+      updateProfilename(nameprof);
+    }
   }
 };

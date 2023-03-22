@@ -323,6 +323,7 @@ button:hover {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
+  max-height: 400px;
   gap: 30px;
   overflow-y: scroll;
   border-left: #145cc0 solid 2px;

@@ -22,10 +22,11 @@ const intAllRoutes = (app, dirname) => {
   });
   //prof booking
   app.post("/reservation", async (req, res) => {
-    let { date, heure_debut, typeSalle } = req.body;
+    let { date, heure_debut, typeSalle, heure_fin } = req.body;
     console.log(typeSalle);
-    const QList = `select id from salles where reservee=false and type="${typeSalle}" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}:00");
-    `;
+
+    const QList = `select id from salles where reservee=false and type="${typeSalle}" and id not in (SELECT idsalle FROM reservation where Dateres="${date}" and heuredebut="${heure_debut}:00") and id not in (select idsalle from reservation where Dateres='${date}' and '${heure_debut}:00'<reservation.heurefin);`;
+    console.log(QList);
     const result = await mydatabse.query(QList);
     console.log(result);
     return res.json({ SallesDispo: result });
@@ -35,25 +36,6 @@ const intAllRoutes = (app, dirname) => {
   // app.get("/admin/booking", (req, res) => {
   //   res.sendFile(dirname + "/public/reservation_admin.html");
   // });
-
-  app.post("/admin/booking", async (req, res) => {
-    let {
-      date,
-      heure_debut,
-      heure_fin,
-      fois,
-      salle,
-      cours,
-      filiere,
-      niveau,
-      bouton,
-    } = req.body;
-    const QList = `SELECT salles.id FROM salles where reservee=false not in (select reservation.idsalle as id from reservation where Dateres="2022-06-10" and heuredebut="10:00:00") ;
-    `;
-    const result = await mydatabse.query(QList);
-    console.log(result);
-    return res.json({ SallesDispo: result });
-  });
 
   //
   app.get("/admin", (req, res) => {
@@ -214,6 +196,25 @@ const intAllRoutes = (app, dirname) => {
     return res.json({ planning: result1 });
   });
 
+  app.post("/etudiant/getSalleLocation", async (req, res) => {
+    console.log(req.body);
+    return res.json({
+      image: req.body.id,
+    });
+    // const sql = `select image from salles where id='${req.body.id}'`;
+    // const result = await mydatabse.query(sql);
+    // console.log(result[0]);
+    // if (result[0].image === null) {
+    //   return res.json({
+    //     noResult: "pas d'image pour cette salle",
+    //   });
+    // } else {
+    //   return res.json({
+    //     image: result[0].image,
+    //   });
+    // }
+  });
+
   //
 
   app.get("/prof", (req, res) => {
@@ -269,6 +270,39 @@ const intAllRoutes = (app, dirname) => {
   // app.get("/admin/booking", (req, res) => {
   //   res.sendFile(dirname + "/public/reservation_admin.html");
   // });
+
+  app.post("/admin/getStats", async (req, res) => {
+    const [heurdebut, heurefin] = req.body.data[1].split(" ");
+    // DISPO
+    const sql = `select id from salles where type='salle cours' and id not in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result = await mydatabse.query(sql);
+    const salleDispo = result.length;
+    const sql1 = `select id from salles where type='salle TP' and id not in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result1 = await mydatabse.query(sql1);
+    const ccsDispo = result1.length;
+    const sql2 = `select id from salles where type='emphi' and id not in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result2 = await mydatabse.query(sql2);
+    const amphiDispo = result2.length;
+
+    // OCCUPE
+    const sql3 = `select id from salles where type='salle cours' and id in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result3 = await mydatabse.query(sql3);
+    const salleOccupe = result3.length;
+    const sql4 = `select id from salles where type='salle TP' and id in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result4 = await mydatabse.query(sql4);
+    const ccsOccupe = result4.length;
+    const sql5 = `select id from salles where type='emphi' and id in (select idsalle from reservation where Dateres = '${req.body.data[0]}' and heurefin between '${heurdebut}:00'and '${heurefin}:00') ;`;
+    const result5 = await mydatabse.query(sql5);
+    const amphiOccupe = result5.length;
+    return res.json({
+      salleDispo,
+      ccsDispo,
+      amphiDispo,
+      salleOccupe,
+      ccsOccupe,
+      amphiOccupe,
+    });
+  });
 
   /// reserve the classe in db
   app.put("/reservation", async (req, res) => {

@@ -7,6 +7,8 @@ const navelement = document.querySelector(".nav-list");
 
 const namePorfil = document.querySelector(".username");
 
+const loader = document.querySelector(".loader");
+
 function updateProfilename(name) {
   namePorfil.innerHTML = name;
 }
@@ -87,17 +89,6 @@ emploi_form.addEventListener("click", () => {
   location.replace("/admin/setPlanning");
 });
 
-getStas = () => {
-  fetch("/admin", {
-    method: "post",
-    headers: new Headers({ "Content-Type": "application/json" }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      setStats(data);
-    });
-};
-
 window.onload = () => {
   if (!sessionStorage.user) {
     location.replace("/login");
@@ -108,3 +99,45 @@ window.onload = () => {
     }
   }
 };
+
+///////// GETIING STATISTICS
+const sallesDispo = document.querySelector(".salles-dispo");
+const amphisDispo = document.querySelector(".amphis-dispo");
+const ccsDispo = document.querySelector(".ccs-dispo");
+const sallesOccupe = document.querySelector(".salles-occupe");
+const amphisOccupe = document.querySelector(".amphis-occupe");
+const ccsOccupe = document.querySelector(".ccs-occupe");
+const btn = document.querySelector(".btn");
+
+btn.addEventListener("click", () => {
+  const dateInput = document.querySelector(".date").value;
+  const timeInput = document.querySelector(".time").value;
+  const data = [dateInput, timeInput];
+  fetch("/admin/getStats", {
+    method: "post",
+    headers: new Headers({ "Content-Type": "application/json" }),
+    body: JSON.stringify({
+      data,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      loader.classList.remove("hidden");
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        document.querySelector(".firstName").value = "";
+        document.querySelector(".lastName").value = "";
+        document.querySelector(".matiere").value = "";
+        document.querySelector(".salle").value = "";
+        document.querySelector(".date").value = "";
+        document.querySelector(".debut").value = "";
+        document.querySelector(".fin").value = "";
+      }, 1000);
+      sallesDispo.innerHTML = data.salleDispo;
+      ccsDispo.innerHTML = data.ccsDispo;
+      amphisDispo.innerHTML = data.amphiDispo;
+      sallesOccupe.innerHTML = data.salleOccupe;
+      ccsOccupe.innerHTML = data.ccsOccupe;
+      amphisOccupe.innerHTML = data.amphiOccupe;
+    });
+});

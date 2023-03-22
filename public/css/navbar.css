@@ -18,6 +18,7 @@ body {
 }
 .username {
   text-transform: uppercase;
+  color: black;
 }
 .user {
   height: 30px;
@@ -305,7 +306,7 @@ nav ul li ul li a {
 }
 
 .footer .footer-center p a {
-  color: lightseagreen;
+  color: rgb(20, 102, 98);
   text-decoration: none;
 }
 
@@ -337,7 +338,7 @@ nav ul li ul li a {
 
 .footer .footer-about span {
   display: block;
-  color: #ffffff;
+  color: #555;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 20px;

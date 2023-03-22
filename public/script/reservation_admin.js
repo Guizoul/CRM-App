@@ -9,7 +9,7 @@ navelement.innerHTML = `
 <a href="http://localhost:1337/">Accueil</a>
 </li>
 <li>
-<a href="http://localhost:1337/">Liste des reservation</a>
+<a href="http://localhost:1337/listreservation">Liste des reservation</a>
 </li>
 <li>
 <a href="javascript:void(0);">Notificaiton <i class="fa fa-bell-o"></i></a>
@@ -38,16 +38,14 @@ navelement.innerHTML = `
 
 `;
 
-// const bouton = document.getElementById("bouton");
 let ourUser = JSON.parse(sessionStorage.user || null);
 // const bouton = document.getElementById("bouton");
 let heure_debut = document.getElementById("timeD").value;
 let heure_fin = document.getElementById("timeF").value;
 let fois = document.getElementById("fois").value;
 let typeSalle = document.getElementById("salleList").value;
-let cours = document.getElementById("cours").value;
-let filiere = document.getElementById("filiere").value;
-let niveau = document.getElementById("niveau").value;
+let objectif = document.getElementById("cours").value;
+
 let date = document.getElementById("date").value;
 
 let alertbox = document.querySelector(".alert");
@@ -74,20 +72,10 @@ bouton.addEventListener("click", () => {
   heure_fin = document.getElementById("timeF").value;
   fois = document.getElementById("fois").value;
   typeSalle = document.getElementById("salleList").value;
-  cours = document.getElementById("cours").value;
-  filiere = document.getElementById("filiere").value;
-  niveau = document.getElementById("niveau").value;
+  objectif = document.getElementById("cours").value;
   date = document.getElementById("date").value;
-  if (
-    !fois ||
-    !date ||
-    !heure_debut ||
-    !heure_fin ||
-    !typeSalle ||
-    !cours ||
-    !filiere ||
-    !niveau
-  ) {
+  console.log(heure_debut);
+  if (!fois || !date || !heure_debut || !heure_fin || !typeSalle || !objectif) {
     alertbox.style.backgroundColor = "#fa4033b9";
     showAlert("Merci de remplir tous les champs");
   } else {
@@ -118,7 +106,7 @@ const displayClassrooms = (data) => {
   list.scrollIntoView({ behavior: "smooth" });
   list.innerHTML = `<h3 class="color-h3">Salles dsiponibles</h3>`;
   for (let i = 0; i < data.SallesDispo.length; i++) {
-    list.innerHTML += `<div class="inline"><h4>&emsp;${data.SallesDispo[i].id}</h4>  <button class="reserver">Réserver!</button></div>`;
+    list.innerHTML += `<div class="inline"><h4>${data.SallesDispo[i].id}</h4>  <button class="reserver">Réserver!</button></div>`;
   }
   // reservation events
   const reserver = document.querySelectorAll(".reserver");
@@ -133,7 +121,7 @@ const displayClassrooms = (data) => {
         `Voulez-vous vraiment réserver la salle ${salle}?`
       );
       if (permession) {
-        fetch("/reservation", {
+        fetch("/admin/reservation", {
           method: "put",
           headers: new Headers({ "Content-Type": "application/json" }),
           body: JSON.stringify({
@@ -141,10 +129,8 @@ const displayClassrooms = (data) => {
             heure_debut: heure_debut,
             heure_fin: heure_fin,
             salle: salle,
-            filiere: filiere,
-            niveau: niveau,
-            idprof: ourUser.id,
-            matiere: cours,
+            idadmin: ourUser.id,
+            objectif: objectif,
           }),
         })
           .then((res) => res.json())
@@ -156,28 +142,6 @@ const displayClassrooms = (data) => {
     });
   }
 };
-
-// planning section
-
-const logout = document.querySelector(".logout");
-const namePorfil = document.querySelector(".username");
-const bookingList=document.querySelector(".bookingList")
-
-function updateProfilename(name) {
-  console.log(namePorfil);
-  namePorfil.innerHTML = name;
-}
-logout.addEventListener("click", () => {
-  const permession = confirm("do you really want to log out?");
-  if (permession) {
-    sessionStorage.clear();
-    location.replace("/login");
-  }
-});
-
-bookingList.addEventListener("click", ()=>{
-  location.replace("/prof/List")
-});
 
 // window.onload = () => {
 //   if (!sessionStorage.user) {
@@ -191,4 +155,3 @@ bookingList.addEventListener("click", ()=>{
 //     }
 //   }
 // };
-
